@@ -1,4 +1,5 @@
 import './MockupPreviews.css'
+import { assetUrl } from '../utils/paths'
 
 function MockupChrome({ url, variant }) {
   return (
@@ -50,7 +51,7 @@ export function CafeMockup({ name, type }) {
             <div className="site-preview__visual site-preview__visual--cafe" aria-hidden="true">
               <img
                 className="site-preview__photo"
-                src="/CafeInterior.jpg"
+                src={assetUrl('/CafeInterior.jpg')}
                 alt=""
                 draggable={false}
               />
@@ -73,7 +74,7 @@ export function SalonMockup({ name, type }) {
             <div className="site-preview__visual site-preview__visual--salon" aria-hidden="true">
               <img
                 className="site-preview__photo"
-                src="/NailSalon.jpeg"
+                src={assetUrl('/NailSalon.jpeg')}
                 alt=""
                 draggable={false}
               />
@@ -117,7 +118,7 @@ export function BistroMockup({ name, type }) {
             <div className="site-preview__visual site-preview__visual--bistro" aria-hidden="true">
               <img
                 className="site-preview__photo"
-                src="/EveningDining.webp"
+                src={assetUrl('/EveningDining.webp')}
                 alt=""
                 draggable={false}
               />

@@ -1,8 +1,9 @@
 import './Footer.css'
 import ScrollReveal from './ScrollReveal'
 import { usePageNavigate } from '../hooks/usePageNavigate'
+import { assetUrl, routeHref } from '../utils/paths'
 
-const LOGO_SRC = '/LOGO Image.png'
+const LOGO_SRC = assetUrl('/LOGO Image.png')
 
 const exploreLinks = [
   { label: 'Home', to: '/' },
@@ -46,7 +47,7 @@ function Footer() {
         <div className="footer__top">
           <div className="footer__brand">
             <a
-              href="/"
+              href={routeHref('/')}
               className="footer__logo"
               onClick={(event) => {
                 event.preventDefault()
@@ -69,7 +70,7 @@ function Footer() {
                 {exploreLinks.map((link) => (
                   <li key={link.to}>
                     <a
-                      href={link.to}
+                      href={routeHref(link.to)}
                       onClick={(event) => {
                         event.preventDefault()
                         pageNavigate(link.to)
@@ -88,7 +89,7 @@ function Footer() {
                 {legalLinks.map((link) => (
                   <li key={link.to}>
                     <a
-                      href={link.to}
+                      href={routeHref(link.to)}
                       onClick={(event) => {
                         event.preventDefault()
                         pageNavigate(link.to)

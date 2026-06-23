@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react'
 import { useLocation } from 'react-router-dom'
 import { usePageNavigate } from '../hooks/usePageNavigate'
+import { assetUrl, routeHref } from '../utils/paths'
 import './Navbar.css'
 
 const navLinks = [
@@ -10,7 +11,7 @@ const navLinks = [
   { label: 'Services', to: '/#services' },
 ]
 
-const LOGO_SRC = '/LOGO Image.png'
+const LOGO_SRC = assetUrl('/LOGO Image.png')
 
 function InstagramIcon() {
   return (
@@ -69,7 +70,7 @@ function Navbar() {
   return (
     <header className={`navbar${scrolled ? ' navbar--scrolled' : ''}`}>
       <a
-        href="/"
+        href={routeHref('/')}
         className="navbar__logo"
         onClick={(event) => {
           event.preventDefault()
@@ -108,7 +109,7 @@ function Navbar() {
             return (
               <li key={link.to}>
                 <a
-                  href={link.to}
+                  href={routeHref(link.to)}
                   className={isActive ? 'navbar__link--active' : undefined}
                   aria-current={isActive ? 'page' : undefined}
                   onClick={(event) => {
@@ -125,7 +126,7 @@ function Navbar() {
 
         <div className="navbar__actions">
           <a
-            href="/#contact"
+            href={routeHref('/#contact')}
             className="navbar__cta"
             onClick={(event) => {
               event.preventDefault()

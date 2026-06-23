@@ -38,6 +38,7 @@ const mockupComponents = {
 }
 
 import { usePageNavigate } from '../hooks/usePageNavigate'
+import { routeHref } from '../utils/paths'
 
 function Hero() {
   const pageNavigate = usePageNavigate()
@@ -65,7 +66,7 @@ function Hero() {
 
           <div className="hero__ctas">
             <a
-              href="/#contact"
+              href={routeHref('/#contact')}
               className="hero__cta hero__cta--primary"
               onClick={(event) => {
                 event.preventDefault()
@@ -75,7 +76,7 @@ function Hero() {
               Start a Project
             </a>
             <a
-              href="/#work"
+              href={routeHref('/#work')}
               className="hero__cta hero__cta--secondary"
               onClick={(event) => {
                 event.preventDefault()

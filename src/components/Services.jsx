@@ -1,6 +1,7 @@
 import './Services.css'
 import ScrollReveal from './ScrollReveal'
 import { usePageNavigate } from '../hooks/usePageNavigate'
+import { routeHref } from '../utils/paths'
 
 const tiers = [
   {
@@ -79,7 +80,7 @@ function Services() {
               </ul>
 
               <a
-                href="/#contact"
+                href={routeHref('/#contact')}
                 className="services__cta services__cta--primary"
                 onClick={(event) => {
                   event.preventDefault()
