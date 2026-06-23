@@ -43,12 +43,17 @@ import { routeHref } from '../utils/paths'
 function Hero() {
   const pageNavigate = usePageNavigate()
   return (
-    <section id="home" className="hero hero--enter">
-      <div className="hero__grain" aria-hidden="true" />
+    <section id="home" className="hero hero-band hero-band--home hero--enter">
+      <div className="hero-band__mesh" aria-hidden="true" />
+      <div className="hero-band__grain" aria-hidden="true" />
+      <div className="hero-band__orb hero-band__orb--gold" aria-hidden="true" />
+      <div className="hero-band__orb hero-band__orb--blue" aria-hidden="true" />
+      <div className="hero-band__orb hero-band__orb--warm" aria-hidden="true" />
+      <div className="hero-band__curve" aria-hidden="true" />
 
-      <div className="hero__inner">
+      <div className="hero-band__inner hero__inner">
         <div className="hero__content">
-          <p className="hero__eyebrow">Web design for local businesses</p>
+          <p className="hero-band__eyebrow">Web design for local businesses</p>
 
           <h1 className="hero__headline">
             Helping your business{' '}
@@ -66,21 +71,21 @@ function Hero() {
 
           <div className="hero__ctas">
             <a
-              href={routeHref('/#contact')}
+              href={routeHref('/#contact-form')}
               className="hero__cta hero__cta--primary"
               onClick={(event) => {
                 event.preventDefault()
-                pageNavigate('/#contact')
+                pageNavigate('/#contact-form')
               }}
             >
               Start a Project
             </a>
             <a
-              href={routeHref('/#work')}
+              href={routeHref('/work')}
               className="hero__cta hero__cta--secondary"
               onClick={(event) => {
                 event.preventDefault()
-                pageNavigate('/#work')
+                pageNavigate('/work')
               }}
             >
               View Work

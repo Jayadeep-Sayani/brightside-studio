@@ -80,11 +80,11 @@ function Services() {
               </ul>
 
               <a
-                href={routeHref('/#contact')}
+                href={routeHref('/#contact-form')}
                 className="services__cta services__cta--primary"
                 onClick={(event) => {
                   event.preventDefault()
-                  pageNavigate('/#contact')
+                  pageNavigate('/#contact-form')
                 }}
               >
                 Start a Project

@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import './Contact.css'
 import ScrollReveal from './ScrollReveal'
+import { submitContactForm } from '../utils/submitContactForm'
 
 const packageOptions = [
   { value: 'basic', label: 'Basic Site', price: '$500 CAD' },
@@ -25,16 +26,33 @@ const initialForm = {
 function Contact() {
   const [form, setForm] = useState(initialForm)
   const [submitted, setSubmitted] = useState(false)
+  const [submitting, setSubmitting] = useState(false)
+  const [error, setError] = useState('')
 
   const handleChange = (event) => {
     const { name, value } = event.target
     setForm((prev) => ({ ...prev, [name]: value }))
+    if (error) setError('')
   }
 
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault()
-    setSubmitted(true)
-    setForm(initialForm)
+
+    const honey = event.currentTarget.elements.namedItem('_honey')?.value
+    if (honey) return
+
+    setSubmitting(true)
+    setError('')
+
+    try {
+      await submitContactForm(form)
+      setSubmitted(true)
+      setForm(initialForm)
+    } catch {
+      setError('Something went wrong sending your message. Please try again in a moment.')
+    } finally {
+      setSubmitting(false)
+    }
   }
 
   return (
@@ -54,7 +72,7 @@ function Contact() {
         </ScrollReveal>
 
         <ScrollReveal className="contact__shell-wrap" delay={100}>
-          <div className="contact__shell">
+          <div id="contact-form" className="contact__shell">
           <aside className="contact__aside">
             <h3 className="contact__aside-title">How it works</h3>
             <ol className="contact__steps">
@@ -95,6 +113,15 @@ function Contact() {
               </div>
             ) : (
               <form className="contact__form" onSubmit={handleSubmit} noValidate>
+                <input
+                  type="text"
+                  name="_honey"
+                  className="contact__honeypot"
+                  tabIndex={-1}
+                  autoComplete="off"
+                  aria-hidden="true"
+                />
+
                 <div className="contact__row contact__row--2">
                   <div className="contact__field">
                     <label htmlFor="contact-name">Name</label>
@@ -182,9 +209,20 @@ function Contact() {
                   <p className="contact__fine-print">
                     No spam. Just a thoughtful reply about your project.
                   </p>
-                  <button type="submit" className="contact__submit">
-                    Start a Project
-                  </button>
+                  <div className="contact__submit-wrap">
+                    {error && (
+                      <p className="contact__error" role="alert">
+                        {error}
+                      </p>
+                    )}
+                    <button
+                      type="submit"
+                      className="contact__submit"
+                      disabled={submitting}
+                    >
+                      {submitting ? 'Sending...' : 'Start a Project'}
+                    </button>
+                  </div>
                 </div>
               </form>
             )}

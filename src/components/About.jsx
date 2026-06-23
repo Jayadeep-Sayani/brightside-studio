@@ -1,115 +1,170 @@
 import './About.css'
 import ScrollReveal from './ScrollReveal'
+import { usePageNavigate } from '../hooks/usePageNavigate'
 
-const highlights = [
-  { label: 'School', value: 'UVic · Computer Science' },
-  { label: 'Experience', value: '4+ years building websites' },
-  { label: 'Focus', value: 'Local brands & neighborhood spots' },
+const ownerHighlights = [
+  'UVic · Computer Science',
+  '4+ years building websites',
+  'Local brands & neighborhood spots',
 ]
 
-import { usePageNavigate } from '../hooks/usePageNavigate'
+const impacts = [
+  {
+    title: 'Discovery',
+    text: 'Help people find the café worth trying, the salon that fits their style, the restaurant they keep coming back to.',
+  },
+  {
+    title: 'Foot traffic',
+    text: 'A polished site turns curiosity into visits, bringing more walk-ins, bookings, and repeat customers to your block.',
+  },
+  {
+    title: 'Personality',
+    text: 'Every great local brand online makes the whole city feel more alive, interesting, and worth exploring.',
+  },
+]
+
+const values = [
+  {
+    title: 'Exact vibe',
+    text: 'Your website should match the feeling you are going for. Not almost. Not close enough. The real thing.',
+  },
+  {
+    title: 'We lean in',
+    text: 'Extra revisions, unusual layouts, chasing a hard-to-describe feeling. Nothing is inconvenient when the goal is right.',
+  },
+  {
+    title: 'Shared goal',
+    text: 'A site that feels unmistakably like your business. That is what we are both working toward.',
+  },
+]
 
 function About() {
   const pageNavigate = usePageNavigate()
 
   return (
-    <main className="about-page" aria-labelledby="about-title">
-      <div className="about__inner">
-        <ScrollReveal as="header" className="about__header">
-          <p className="about__eyebrow">About</p>
-          <h2 id="about-title" className="about__title">
-            Making the city more interesting, one business at a time
-          </h2>
-          <p className="about__lead">
-            Brightside Studio exists to help local brands show up online with the
-            same care they put into their storefronts. When neighborhood
-            businesses shine, the whole city feels more alive.
-          </p>
-        </ScrollReveal>
-
-        <div className="about__grid">
-          <ScrollReveal className="about__panel-wrap" delay={80}>
-            <article className="about__panel about__panel--mission">
-              <h3 className="about__panel-title">Our mission</h3>
-              <p>
-                I believe great cities are built from great places to go. A
-                polished website does more than look nice. It helps people find
-                the café worth trying, the salon that fits their style, the
-                restaurant they keep coming back to.
-              </p>
-              <p>
-                Every site I build is one more local brand that feels
-                professional, welcoming, and easy to trust. Those small wins
-                stack up. More discovery. More foot traffic. More personality on
-                every block. That is the kind of city I want to live in, and
-                that is what I am working toward.
-              </p>
-            </article>
-          </ScrollReveal>
-
-          <ScrollReveal className="about__panel-wrap" delay={160}>
-            <article className="about__panel about__panel--values">
-              <h3 className="about__panel-title">Our values</h3>
-              <p>
-                Your website should match the exact vibe you are going for. Not
-                almost. Not close enough. The real thing.
-              </p>
-              <p>
-                That might mean extra revisions, unusual layout ideas, or
-                chasing a feeling that is hard to put into words. We lean in
-                anyway. Nothing is inconvenient when our goal is the same as
-                yours: a site that feels unmistakably like your business.
-              </p>
-            </article>
+    <section className="about-page" aria-labelledby="about-title">
+      <div className="hero-band hero-band--page about__hero">
+        <div className="hero-band__mesh" aria-hidden="true" />
+        <div className="hero-band__grain" aria-hidden="true" />
+        <div className="hero-band__orb hero-band__orb--gold" aria-hidden="true" />
+        <div className="hero-band__orb hero-band__orb--blue" aria-hidden="true" />
+        <div className="hero-band__inner about__hero-inner">
+          <ScrollReveal as="header" className="hero-band__header about__header">
+            <p className="hero-band__eyebrow">About</p>
+            <h1 id="about-title" className="hero-band__title about__title">
+              Making the city more interesting,{' '}
+              <em className="hero-band__accent">one business at a time</em>
+            </h1>
+            <p className="hero-band__lead about__lead">
+              Brightside Studio helps local brands show up online with the same
+              care they put into their storefronts.
+            </p>
           </ScrollReveal>
         </div>
-
-        <ScrollReveal className="about__owner-wrap" delay={120}>
-          <article className="about__owner">
-            <div className="about__owner-mark" aria-hidden="true">
-              <span>B</span>
-            </div>
-            <div className="about__owner-copy">
-              <p className="about__owner-eyebrow">The owner</p>
-              <h3 className="about__owner-name">Built by a local, for locals</h3>
-              <p>
-                I am a computer science student at the University of Victoria
-                with four years of experience making websites for businesses
-                around me. I started Brightside Studio because I kept seeing
-                owners with something special in person and something forgettable
-                online. I wanted to close that gap.
-              </p>
-              <p>
-                I care about clean, reliable builds and design that feels right,
-                but the part that matters most is helping owners feel proud when
-                someone lands on their site for the first time.
-              </p>
-              <ul className="about__highlights">
-                {highlights.map((item) => (
-                  <li key={item.label}>
-                    <span className="about__highlight-label">{item.label}</span>
-                    <span className="about__highlight-value">{item.value}</span>
-                  </li>
-                ))}
-              </ul>
-            </div>
-          </article>
-        </ScrollReveal>
-
-        <ScrollReveal className="about__cta-wrap" delay={180}>
-          <div className="about__cta-bar">
-            <p>Ready to help your business shine in the community?</p>
-            <button
-              type="button"
-              className="about__cta"
-              onClick={() => pageNavigate('/#contact')}
-            >
-              Start a Project
-            </button>
-          </div>
-        </ScrollReveal>
       </div>
-    </main>
+
+      <div className="about__body">
+        <div className="about__inner">
+          <ScrollReveal className="about__quote-wrap" delay={60}>
+            <blockquote className="about__quote">
+              <p>
+                Great cities are built from great places to go. Every site I
+                build is one more local brand that feels professional, welcoming,
+                and easy to trust.
+              </p>
+            </blockquote>
+          </ScrollReveal>
+
+          <ScrollReveal as="header" className="about__section-head" delay={80}>
+            <p className="about__section-eyebrow">Why it matters</p>
+            <h2 className="about__section-title">Small wins that stack up</h2>
+          </ScrollReveal>
+
+          <div className="about__impacts">
+            {impacts.map((item, index) => (
+              <ScrollReveal
+                key={item.title}
+                className="about__impact-wrap"
+                delay={100 + index * 80}
+              >
+                <article className="about__impact">
+                  <span className="about__impact-num" aria-hidden="true">
+                    {String(index + 1).padStart(2, '0')}
+                  </span>
+                  <h3 className="about__impact-title">{item.title}</h3>
+                  <p className="about__impact-text">{item.text}</p>
+                </article>
+              </ScrollReveal>
+            ))}
+          </div>
+
+          <ScrollReveal as="header" className="about__section-head" delay={60}>
+            <p className="about__section-eyebrow">Our values</p>
+            <h2 className="about__section-title">How we work with you</h2>
+          </ScrollReveal>
+
+          <div className="about__values">
+            {values.map((item, index) => (
+              <ScrollReveal
+                key={item.title}
+                className="about__value-wrap"
+                delay={80 + index * 80}
+              >
+                <article className="about__value">
+                  <h3 className="about__value-title">{item.title}</h3>
+                  <p className="about__value-text">{item.text}</p>
+                </article>
+              </ScrollReveal>
+            ))}
+          </div>
+
+          <ScrollReveal className="about__owner-wrap" delay={100}>
+            <article className="about__owner">
+              <div className="about__owner-visual" aria-hidden="true">
+                <div className="about__owner-mark">
+                  <span>B</span>
+                </div>
+                <div className="about__owner-ring" />
+              </div>
+              <div className="about__owner-copy">
+                <p className="about__owner-eyebrow">The owner</p>
+                <h2 className="about__owner-name">Built by a local, for locals</h2>
+                <p className="about__owner-bio">
+                  I am a computer science student at the University of Victoria
+                  with four years of experience making websites for businesses
+                  around me. I started Brightside Studio to close the gap between
+                  what owners bring in person and what people see online.
+                </p>
+                <ul className="about__owner-tags">
+                  {ownerHighlights.map((item) => (
+                    <li key={item}>{item}</li>
+                  ))}
+                </ul>
+              </div>
+            </article>
+          </ScrollReveal>
+
+          <ScrollReveal className="about__cta-wrap" delay={120}>
+            <div className="about__cta-bar">
+              <div className="about__cta-copy">
+                <p className="about__cta-title">Ready to shine in your community?</p>
+                <p className="about__cta-sub">
+                  Tell us about your business and we will help you show up online
+                  with confidence.
+                </p>
+              </div>
+              <button
+                type="button"
+                className="about__cta"
+                onClick={() => pageNavigate('/#contact-form')}
+              >
+                Start a Project
+              </button>
+            </div>
+          </ScrollReveal>
+        </div>
+      </div>
+    </section>
   )
 }
 

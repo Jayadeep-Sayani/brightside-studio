@@ -7,7 +7,7 @@ import './Navbar.css'
 const navLinks = [
   { label: 'Home', to: '/' },
   { label: 'About', to: '/about' },
-  { label: 'Past Work', to: '/#work' },
+  { label: 'Past Work', to: '/work' },
   { label: 'Services', to: '/#services' },
 ]
 
@@ -33,6 +33,7 @@ function FacebookIcon() {
 
 function isLinkActive(to, pathname, hash) {
   if (to === '/about') return pathname === '/about'
+  if (to === '/work') return pathname === '/work'
   if (to === '/') return pathname === '/' && (!hash || hash === '#home')
   if (to.startsWith('/#')) {
     return pathname === '/' && hash === to.slice(1)
@@ -126,11 +127,11 @@ function Navbar() {
 
         <div className="navbar__actions">
           <a
-            href={routeHref('/#contact')}
+            href={routeHref('/#contact-form')}
             className="navbar__cta"
             onClick={(event) => {
               event.preventDefault()
-              goTo('/#contact')
+              goTo('/#contact-form')
             }}
           >
             Start a Project

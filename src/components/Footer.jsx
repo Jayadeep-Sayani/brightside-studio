@@ -8,14 +8,14 @@ const LOGO_SRC = assetUrl('/LOGO Image.png')
 const exploreLinks = [
   { label: 'Home', to: '/' },
   { label: 'About', to: '/about' },
-  { label: 'Past Work', to: '/#work' },
+  { label: 'Past Work', to: '/work' },
   { label: 'Services', to: '/#services' },
-  { label: 'Contact', to: '/#contact' },
+  { label: 'Contact', to: '/#contact-form' },
 ]
 
 const legalLinks = [
-  { label: 'Privacy Policy', to: '/#privacy' },
-  { label: 'Terms of Service', to: '/#terms' },
+  { label: 'Privacy Policy', to: '/privacy' },
+  { label: 'Terms of Service', to: '/terms' },
 ]
 
 function InstagramIcon() {

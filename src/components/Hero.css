@@ -1,22 +1,6 @@
 .hero {
   position: relative;
   overflow: hidden;
-  background: linear-gradient(
-    145deg,
-    #fde8d4 0%,
-    #faf6f0 42%,
-    #f7f4ef 72%,
-    #fafbfc 100%
-  );
-}
-
-.hero__grain {
-  position: absolute;
-  inset: 0;
-  opacity: 0.35;
-  pointer-events: none;
-  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.5'/%3E%3C/svg%3E");
-  background-size: 180px 180px;
 }
 
 .hero__inner {
@@ -27,7 +11,7 @@
   gap: var(--space-9);
   max-width: none;
   margin: 0 auto;
-  padding: var(--space-10) var(--space-5) var(--space-9);
+  padding: var(--space-10) var(--space-5) calc(var(--space-10) + var(--space-2));
 }
 
 .hero__content {
@@ -35,14 +19,16 @@
   text-align: center;
 }
 
-.hero__eyebrow {
-  margin: 0 0 var(--space-4);
-  font-family: var(--font-body);
-  font-size: var(--text-sm);
-  font-weight: 600;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  color: var(--color-primary);
+.hero--enter .hero-band__eyebrow,
+.hero--enter .hero__headline,
+.hero--enter .hero__subtext,
+.hero--enter .hero__ctas,
+.hero--enter .hero__visual {
+  animation: hero-enter 0.75s ease backwards;
+}
+
+.hero--enter .hero-band__eyebrow {
+  animation-delay: 0.05s;
 }
 
 .hero__headline {
@@ -174,19 +160,7 @@
   outline-offset: 3px;
 }
 
-.hero--enter .hero__eyebrow,
-.hero--enter .hero__headline,
-.hero--enter .hero__subtext,
-.hero--enter .hero__ctas,
-.hero--enter .hero__visual {
-  animation: hero-enter 0.75s ease backwards;
-}
-
-.hero--enter .hero__eyebrow {
-  animation-delay: 0.05s;
-}
-
-.hero--enter .hero__headline {
+.hero__headline {
   animation-delay: 0.14s;
 }
 
@@ -215,7 +189,7 @@
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .hero--enter .hero__eyebrow,
+  .hero--enter .hero-band__eyebrow,
   .hero--enter .hero__headline,
   .hero--enter .hero__subtext,
   .hero--enter .hero__ctas,
