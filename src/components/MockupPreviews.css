@@ -1,0 +1,463 @@
+/* Shared mockup chrome */
+.mockup {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+.mockup * {
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+.mockup__screen--flush {
+  padding: 0;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.site-preview {
+  --preview-height: 12rem;
+
+  display: flex;
+  flex-direction: column;
+  height: var(--preview-height);
+  min-height: var(--preview-height);
+  max-height: var(--preview-height);
+  overflow: hidden;
+}
+
+.site-preview__hero {
+  flex: 1;
+  min-height: 0;
+  overflow: hidden;
+}
+
+/* Block Brightside global h1–h6 styles from bleeding into mockups */
+.site-preview :is(h1, h2, h3, h4, h5, h6) {
+  font-family: var(--sp-font-display);
+  color: inherit;
+  font-weight: inherit;
+  line-height: inherit;
+  margin: 0;
+}
+
+.site-preview :is(p, span, nav, button, a) {
+  font-family: inherit;
+}
+
+/* ── Harbor Café — Josefin Sans + Lora · vintage cozy ── */
+.site-preview--cafe {
+  --sp-bg: #faf6f0;
+  --sp-text: #3d2914;
+  --sp-muted: #7a6555;
+  --sp-accent: #c67b4a;
+  --sp-accent-dark: #a86235;
+  --sp-sage: #8a9a7b;
+  --sp-font-display: 'Josefin Sans', system-ui, sans-serif;
+  --sp-font-body: 'Lora', Georgia, serif;
+
+  background: var(--sp-bg);
+  font-family: var(--sp-font-body);
+  color: var(--sp-text);
+}
+
+.site-preview--cafe .site-preview__nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.55rem 0.75rem;
+  border-bottom: 1px solid #ebe3d8;
+}
+
+.site-preview--cafe .site-preview__logo {
+  font-family: var(--sp-font-display);
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--sp-text);
+}
+
+.site-preview--cafe .site-preview__links {
+  display: flex;
+  gap: 0.5rem;
+  font-family: var(--sp-font-display);
+  font-size: 0.44rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--sp-muted);
+}
+
+.site-preview--cafe .site-preview__hero--split {
+  display: grid;
+  grid-template-columns: 1.1fr 0.9fr;
+  height: 100%;
+}
+
+.site-preview--cafe .site-preview__copy {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 0.75rem 0.65rem 0.85rem 0.75rem;
+}
+
+.site-preview--cafe .site-preview__eyebrow {
+  margin: 0 0 0.35rem;
+  font-family: var(--sp-font-display);
+  font-size: 0.42rem;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--sp-sage);
+}
+
+.site-preview--cafe .site-preview__headline {
+  margin: 0 0 0.4rem;
+  font-family: var(--sp-font-display);
+  font-size: clamp(0.78rem, 1.5vw, 0.98rem);
+  font-weight: 600;
+  line-height: 1.1;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+  color: var(--sp-text);
+}
+
+.site-preview--cafe .site-preview__text {
+  margin: 0 0 0.55rem;
+  font-family: var(--sp-font-body);
+  font-size: 0.5rem;
+  font-style: italic;
+  line-height: 1.45;
+  color: var(--sp-muted);
+}
+
+.site-preview--cafe .site-preview__visual--cafe {
+  height: 100%;
+}
+
+.site-preview--cafe .site-preview__visual--cafe::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  background: linear-gradient(160deg, rgba(61, 41, 20, 0.15) 0%, transparent 55%);
+  pointer-events: none;
+}
+
+/* Lumen Salon: Bodoni Moda + Montserrat, full-bleed editorial hero */
+.site-preview--salon {
+  --sp-bg: #fdf8f6;
+  --sp-text: #2d2d2d;
+  --sp-muted: #8a7a74;
+  --sp-accent: #c9a89a;
+  --sp-accent-dark: #a88678;
+  --sp-blush: #f5ebe7;
+  --sp-font-display: 'Bodoni Moda', 'Didot', serif;
+  --sp-font-body: 'Montserrat', system-ui, sans-serif;
+
+  background: var(--sp-bg);
+  font-family: var(--sp-font-body);
+  color: var(--sp-text);
+}
+
+.site-preview--salon .site-preview__hero--salon {
+  position: relative;
+  height: 100%;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+.site-preview--salon .site-preview__visual--salon {
+  position: absolute;
+  inset: 0;
+}
+
+.site-preview--salon .site-preview__visual--salon::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  background:
+    linear-gradient(
+      180deg,
+      rgba(253, 248, 246, 0.62) 0%,
+      rgba(30, 24, 22, 0.35) 42%,
+      rgba(12, 10, 9, 0.82) 100%
+    );
+  pointer-events: none;
+}
+
+.site-preview--salon .site-preview__nav--salon {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.5rem 0.7rem;
+}
+
+.site-preview--salon .site-preview__logo {
+  font-family: var(--sp-font-display);
+  font-size: 0.68rem;
+  font-weight: 600;
+  letter-spacing: 0.28em;
+  color: var(--sp-text);
+}
+
+.site-preview--salon .site-preview__links {
+  display: flex;
+  gap: 0.45rem;
+  font-family: var(--sp-font-body);
+  font-size: 0.38rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--sp-muted);
+}
+
+.site-preview--salon .site-preview__salon-body {
+  position: relative;
+  z-index: 2;
+  margin-top: auto;
+  padding: 0 0.65rem 0.6rem;
+  text-align: center;
+}
+
+.site-preview--salon .site-preview__eyebrow {
+  margin: 0 0 0.22rem;
+  font-size: 0.38rem;
+  font-weight: 600;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.88);
+}
+
+.site-preview--salon .site-preview__headline {
+  margin: 0 0 0.42rem;
+  font-family: var(--sp-font-display);
+  font-size: clamp(0.8rem, 1.5vw, 1rem);
+  font-weight: 600;
+  font-style: italic;
+  line-height: 1.06;
+  color: #fff;
+  text-shadow: 0 1px 10px rgba(0, 0, 0, 0.28);
+}
+
+.site-preview--salon .site-preview__booking-row {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  padding: 0.22rem 0.28rem 0.22rem 0.32rem;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.94);
+  border: 1px solid rgba(255, 255, 255, 0.7);
+  box-shadow: 0 2px 10px rgba(45, 45, 45, 0.12);
+}
+
+.site-preview--salon .site-preview__slots {
+  display: flex;
+  gap: 0.22rem;
+}
+
+.site-preview--salon .site-preview__slots span {
+  padding: 0.16rem 0.32rem;
+  border-radius: 999px;
+  border: 1px solid #e8dcd6;
+  font-size: 0.38rem;
+  font-weight: 500;
+  color: var(--sp-muted);
+  background: #fff;
+}
+
+.site-preview--salon .site-preview__slot--active {
+  background: var(--sp-text) !important;
+  border-color: var(--sp-text) !important;
+  color: #fff !important;
+}
+
+/* ── Drift Bistro — Oswald + Crimson Pro · bold editorial ── */
+.site-preview--bistro {
+  --sp-bg: #1a2332;
+  --sp-text: #f5f0e8;
+  --sp-muted: #b8c0cc;
+  --sp-gold: #d4af37;
+  --sp-gold-dark: #b8942e;
+  --sp-wine: #6b2d3c;
+  --sp-font-display: 'Oswald', system-ui, sans-serif;
+  --sp-font-body: 'Crimson Pro', Georgia, serif;
+
+  background: var(--sp-bg);
+  font-family: var(--sp-font-body);
+  color: var(--sp-text);
+}
+
+.site-preview--bistro .site-preview__hero--overlay {
+  position: relative;
+  height: 100%;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+.site-preview--bistro .site-preview__visual--bistro {
+  position: absolute;
+  inset: 0;
+}
+
+.site-preview--bistro .site-preview__visual--bistro::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  background:
+    linear-gradient(0deg, rgba(26, 35, 50, 0.92) 0%, rgba(26, 35, 50, 0.35) 55%, rgba(26, 35, 50, 0.5) 100%);
+  pointer-events: none;
+}
+
+.site-preview--bistro .site-preview__nav--overlay {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.55rem 0.75rem;
+}
+
+.site-preview--bistro .site-preview__logo {
+  font-family: var(--sp-font-display);
+  font-size: 0.58rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--sp-text);
+}
+
+.site-preview--bistro .site-preview__links {
+  display: flex;
+  gap: 0.45rem;
+  font-family: var(--sp-font-display);
+  font-size: 0.42rem;
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--sp-muted);
+}
+
+.site-preview--bistro .site-preview__overlay-copy {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  flex: 1;
+  min-height: 0;
+  padding: 0 0.75rem 0.7rem;
+}
+
+.site-preview--bistro .site-preview__eyebrow {
+  margin: 0 0 0.3rem;
+  font-family: var(--sp-font-display);
+  font-size: 0.4rem;
+  font-weight: 500;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--sp-gold);
+}
+
+.site-preview--bistro .site-preview__headline {
+  margin: 0 0 0.35rem;
+  font-family: var(--sp-font-display);
+  font-size: clamp(0.82rem, 1.55vw, 1.05rem);
+  font-weight: 600;
+  line-height: 1.05;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+  color: var(--sp-text);
+}
+
+.site-preview--bistro .site-preview__text {
+  margin: 0 0 0.5rem;
+  font-family: var(--sp-font-body);
+  font-size: 0.48rem;
+  font-weight: 400;
+  line-height: 1.4;
+  color: var(--sp-muted);
+  max-width: 88%;
+}
+
+/* Shared preview elements */
+.site-preview__visual {
+  position: relative;
+  overflow: hidden;
+}
+
+.site-preview__photo {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  pointer-events: none;
+  -webkit-user-drag: none;
+}
+
+.site-preview--salon .site-preview__photo {
+  filter: brightness(0.86);
+  object-position: center 30%;
+}
+
+.site-preview__btn {
+  display: inline-block;
+  width: fit-content;
+  padding: 0.3rem 0.55rem;
+  border-radius: 3px;
+  font-family: var(--sp-font-body);
+  font-size: 0.45rem;
+  font-weight: 600;
+  letter-spacing: 0.03em;
+  white-space: nowrap;
+}
+
+.site-preview__btn--cafe {
+  font-family: var(--sp-font-display);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  background: var(--sp-accent);
+  color: #fff;
+}
+
+.site-preview__btn--salon {
+  font-family: var(--sp-font-body);
+  background: var(--sp-text);
+  color: #fff;
+  width: auto;
+  text-align: center;
+  padding: 0.2rem 0.42rem;
+  border-radius: 999px;
+  font-size: 0.38rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.site-preview__btn--bistro {
+  font-family: var(--sp-font-display);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  background: transparent;
+  border: 1px solid var(--sp-gold);
+  color: var(--sp-gold);
+}
+
+/* Mobile — keep equal preview heights */
+@media (max-width: 900px) {
+  .site-preview {
+    --preview-height: 12rem;
+  }
+}
