@@ -38,9 +38,15 @@
   color: var(--color-text-muted);
 }
 
-.services__grid {
+.services__layout {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-6);
+}
+
+.services__site-grid {
   display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
+  grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: var(--space-6);
   align-items: stretch;
 }
@@ -52,13 +58,14 @@
 
 .services__card-wrap .services__card {
   flex: 1;
+  width: 100%;
 }
 
 .services__card {
   position: relative;
   display: flex;
   flex-direction: column;
-  padding: var(--space-7);
+  padding: var(--space-8);
   background: var(--color-background);
   border: 1px solid var(--color-border);
   border-radius: var(--radius-lg);
@@ -67,6 +74,21 @@
     box-shadow var(--transition-base),
     transform var(--transition-base),
     border-color var(--transition-base);
+}
+
+.services__card--maintenance {
+  padding: var(--space-7) var(--space-8);
+}
+
+.services__card--maintenance .services__features {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--space-3) var(--space-6);
+  margin-bottom: var(--space-6);
+}
+
+.services__card--maintenance .services__features li {
+  margin-bottom: 0;
 }
 
 .services__card:hover {
@@ -149,11 +171,98 @@
   color: var(--color-text-muted);
 }
 
+.services__feature-groups {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  margin-bottom: var(--space-7);
+}
+
+.services__includes {
+  padding: var(--space-5);
+  border-radius: var(--radius-md);
+  background: var(--color-primary-light);
+  border: 1px solid rgba(15, 76, 138, 0.12);
+}
+
+.services__includes-label {
+  margin: 0 0 var(--space-3);
+  font-family: var(--font-body);
+  font-size: var(--text-xs);
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--color-primary);
+}
+
+.services__includes-list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.services__includes-list li {
+  position: relative;
+  padding-left: var(--space-5);
+  margin-bottom: var(--space-2);
+  font-size: var(--text-sm);
+  line-height: var(--leading-relaxed);
+  color: var(--color-text);
+}
+
+.services__includes-list li:last-child {
+  margin-bottom: 0;
+}
+
+.services__includes-list li::before {
+  content: '✓';
+  position: absolute;
+  left: 0;
+  top: 0;
+  font-size: var(--text-sm);
+  font-weight: 700;
+  line-height: var(--leading-relaxed);
+  color: var(--color-primary);
+}
+
+.services__plus-divider {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  margin: var(--space-5) 0;
+}
+
+.services__plus-divider::before,
+.services__plus-divider::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: var(--color-border);
+}
+
+.services__plus-divider span {
+  flex-shrink: 0;
+  padding: var(--space-1) var(--space-4);
+  border-radius: var(--radius-full);
+  background: var(--color-accent-light);
+  border: 1px solid rgba(245, 166, 35, 0.3);
+  font-family: var(--font-body);
+  font-size: var(--text-xs);
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--color-accent-dark);
+}
+
 .services__features {
   flex: 1;
   margin: 0 0 var(--space-7);
   padding: 0;
   list-style: none;
+}
+
+.services__features--extra {
+  margin-bottom: 0;
 }
 
 .services__features li {
@@ -180,8 +289,21 @@
   background: var(--color-accent);
 }
 
-.services__card--featured .services__features li::before {
-  background: var(--color-primary);
+.services__features--extra li::before {
+  content: '+';
+  top: 0;
+  width: auto;
+  height: auto;
+  border-radius: 0;
+  background: none;
+  font-size: var(--text-base);
+  font-weight: 700;
+  line-height: var(--leading-relaxed);
+  color: var(--color-accent-dark);
+}
+
+.services__card--featured .services__features--extra li::before {
+  color: var(--color-primary);
 }
 
 .services__cta {
@@ -223,13 +345,6 @@
   outline-offset: 3px;
 }
 
-@media (max-width: 1100px) {
-  .services__grid {
-    grid-template-columns: 1fr;
-    gap: var(--space-5);
-  }
-}
-
 @media (max-width: 900px) {
   .services__inner {
     padding: var(--space-8) var(--space-5);
@@ -239,8 +354,18 @@
     margin-bottom: var(--space-8);
   }
 
-  .services__card {
+  .services__site-grid {
+    grid-template-columns: 1fr;
+    gap: var(--space-5);
+  }
+
+  .services__card,
+  .services__card--maintenance {
     padding: var(--space-6);
+  }
+
+  .services__card--maintenance .services__features {
+    grid-template-columns: 1fr;
   }
 }
 

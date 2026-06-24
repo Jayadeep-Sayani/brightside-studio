@@ -1,8 +1,22 @@
-const basicFeatures = [
+export const basicFeatures = [
   'Responsive layout across phone, tablet, and desktop',
   'All essential pages for your business',
   'Clean, visually pleasing design',
   'Built on proven web design standards',
+]
+
+export const advancedOnlyFeatures = [
+  'Bold custom design that breaks from templates',
+  'Animated elements and scroll interactions',
+  'Tailored to your business vibe and personality',
+  'Crafted to hook customers from the first second',
+]
+
+export const maintenanceFeatures = [
+  'Change text, images, hours, and other existing content',
+  'Updates to pages already on your site',
+  'Request changes whenever you need them',
+  'Available for sites we built and launched',
 ]
 
 export const serviceTiers = [
@@ -20,13 +34,8 @@ export const serviceTiers = [
     price: 2500,
     description:
       'A standout site that goes beyond the usual playbook, built to capture attention and feel unmistakably like your brand.',
-    features: [
-      'Everything in Basic Site, plus:',
-      'Bold custom design that breaks from templates',
-      'Animated elements and scroll interactions',
-      'Tailored to your business vibe and personality',
-      'Crafted to hook customers from the first second',
-    ],
+    includesBasic: true,
+    extraFeatures: advancedOnlyFeatures,
     featured: true,
   },
   {
@@ -36,12 +45,7 @@ export const serviceTiers = [
     interval: '/month',
     description:
       'Ongoing support after your site is live. Reach out anytime and we will update existing content, pages, and details on your site.',
-    features: [
-      'Change text, images, hours, and other existing content',
-      'Updates to pages already on your site',
-      'Request changes whenever you need them',
-      'Available for sites we built and launched',
-    ],
+    features: maintenanceFeatures,
   },
 ]
 
