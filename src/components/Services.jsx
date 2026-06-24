@@ -101,11 +101,13 @@ function Services() {
           </div>
 
           {maintenanceTier && (
-            <ServiceCard
-              tier={maintenanceTier}
-              delay={240}
-              pageNavigate={pageNavigate}
-            />
+            <div className="services__maintenance-row">
+              <ServiceCard
+                tier={maintenanceTier}
+                delay={240}
+                pageNavigate={pageNavigate}
+              />
+            </div>
           )}
         </div>
       </div>
