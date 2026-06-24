@@ -161,78 +161,33 @@
   margin-bottom: var(--space-5);
 }
 
-.services__includes {
-  padding: var(--space-4);
-  border-radius: var(--radius-md);
-  background: var(--color-primary-light);
-  border: 1px solid rgba(15, 76, 138, 0.12);
-}
-
-.services__includes-label {
-  margin: 0 0 var(--space-3);
-  font-family: var(--font-body);
-  font-size: var(--text-xs);
-  font-weight: 600;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  color: var(--color-primary);
-}
-
-.services__includes-grid {
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: var(--space-2) var(--space-3);
-  margin: 0;
-  padding: 0;
-  list-style: none;
-}
-
-.services__includes-grid li {
-  position: relative;
-  padding-left: 1.1rem;
-  font-size: var(--text-xs);
-  line-height: var(--leading-normal);
-  color: var(--color-text);
-}
-
-.services__includes-grid li::before {
-  content: '✓';
-  position: absolute;
-  left: 0;
-  top: 0;
-  font-size: 0.7rem;
-  font-weight: 700;
-  line-height: var(--leading-normal);
-  color: var(--color-primary);
-}
-
-.services__plus-divider {
+.services__includes-badge {
   display: flex;
   align-items: center;
   gap: var(--space-2);
-  margin: var(--space-4) 0;
-}
-
-.services__plus-divider::before,
-.services__plus-divider::after {
-  content: '';
-  flex: 1;
-  height: 1px;
-  background: var(--color-border);
-}
-
-.services__plus-divider span {
-  flex-shrink: 0;
-  padding: 0.1rem var(--space-3);
-  border-radius: var(--radius-full);
-  background: var(--color-accent-light);
-  border: 1px solid rgba(245, 166, 35, 0.3);
-  font-family: var(--font-body);
-  font-size: 0.65rem;
+  margin: 0 0 var(--space-5);
+  padding: var(--space-3) var(--space-4);
+  border-radius: var(--radius-md);
+  background: var(--color-primary-light);
+  border: 1px solid rgba(15, 76, 138, 0.12);
+  font-size: var(--text-sm);
   font-weight: 600;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  color: var(--color-accent-dark);
+  color: var(--color-primary);
+}
+
+.services__includes-badge::before {
+  content: '✓';
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 1.25rem;
+  height: 1.25rem;
+  flex-shrink: 0;
+  border-radius: var(--radius-full);
+  background: var(--color-white);
+  font-size: var(--text-xs);
+  font-weight: 700;
+  color: var(--color-primary);
 }
 
 .services__features {
@@ -332,10 +287,6 @@
     gap: var(--space-5);
     max-width: 28rem;
     margin: 0 auto;
-  }
-
-  .services__includes-grid {
-    grid-template-columns: 1fr;
   }
 }
 

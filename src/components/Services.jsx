@@ -2,7 +2,7 @@ import './Services.css'
 import ScrollReveal from './ScrollReveal'
 import { usePageNavigate } from '../hooks/usePageNavigate'
 import { routeHref } from '../utils/paths'
-import { basicFeatures, serviceTiers } from '../data/packages'
+import { serviceTiers } from '../data/packages'
 
 function ServiceCard({ tier, delay, pageNavigate }) {
   return (
@@ -31,18 +31,7 @@ function ServiceCard({ tier, delay, pageNavigate }) {
 
         {tier.includesBasic ? (
           <div className="services__feature-groups">
-            <div className="services__includes">
-              <p className="services__includes-label">Includes Basic Site</p>
-              <ul className="services__includes-grid">
-                {basicFeatures.map((feature) => (
-                  <li key={feature}>{feature}</li>
-                ))}
-              </ul>
-            </div>
-
-            <div className="services__plus-divider" aria-hidden="true">
-              <span>Plus</span>
-            </div>
+            <p className="services__includes-badge">Includes all Basic Site benefits</p>
 
             <ul className="services__features services__features--extra">
               {tier.extraFeatures.map((feature) => (
