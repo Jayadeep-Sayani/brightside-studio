@@ -2,12 +2,7 @@ import { useState } from 'react'
 import './Contact.css'
 import ScrollReveal from './ScrollReveal'
 import { submitContactForm } from '../utils/submitContactForm'
-
-const packageOptions = [
-  { value: 'basic', label: 'Basic Site', price: '$500 CAD' },
-  { value: 'advanced', label: 'Advanced Site', price: '$2,000 CAD' },
-  { value: 'unsure', label: 'Not sure yet', price: 'Happy to advise' },
-]
+import { contactPackageOptions } from '../data/packages'
 
 const steps = [
   'Share a few details about your business and goals.',
@@ -168,7 +163,7 @@ function Contact() {
                 <fieldset className="contact__fieldset">
                   <legend className="contact__fieldset-legend">Package interest</legend>
                   <div className="contact__package-grid">
-                    {packageOptions.map((option) => (
+                    {contactPackageOptions.map((option) => (
                       <label
                         key={option.value}
                         className={`contact__package-option${

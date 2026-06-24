@@ -2,12 +2,6 @@ import './About.css'
 import ScrollReveal from './ScrollReveal'
 import { usePageNavigate } from '../hooks/usePageNavigate'
 
-const ownerHighlights = [
-  'UVic · Computer Science',
-  '4+ years building websites',
-  'Local brands & neighborhood spots',
-]
-
 const impacts = [
   {
     title: 'Discovery',
@@ -68,7 +62,7 @@ function About() {
           <ScrollReveal className="about__quote-wrap" delay={60}>
             <blockquote className="about__quote">
               <p>
-                Great cities are built from great places to go. Every site I
+                Great cities are built from great places to go. Every site we
                 build is one more local brand that feels professional, welcoming,
                 and easy to trust.
               </p>
@@ -117,32 +111,6 @@ function About() {
               </ScrollReveal>
             ))}
           </div>
-
-          <ScrollReveal className="about__owner-wrap" delay={100}>
-            <article className="about__owner">
-              <div className="about__owner-visual" aria-hidden="true">
-                <div className="about__owner-mark">
-                  <span>B</span>
-                </div>
-                <div className="about__owner-ring" />
-              </div>
-              <div className="about__owner-copy">
-                <p className="about__owner-eyebrow">The owner</p>
-                <h2 className="about__owner-name">Built by a local, for locals</h2>
-                <p className="about__owner-bio">
-                  I am a computer science student at the University of Victoria
-                  with four years of experience making websites for businesses
-                  around me. I started Brightside Studio to close the gap between
-                  what owners bring in person and what people see online.
-                </p>
-                <ul className="about__owner-tags">
-                  {ownerHighlights.map((item) => (
-                    <li key={item}>{item}</li>
-                  ))}
-                </ul>
-              </div>
-            </article>
-          </ScrollReveal>
 
           <ScrollReveal className="about__cta-wrap" delay={120}>
             <div className="about__cta-bar">

@@ -152,116 +152,6 @@
   color: var(--color-text-muted);
 }
 
-/* ── Owner block ── */
-
-.about__owner-wrap {
-  width: 100%;
-  margin-bottom: var(--space-9);
-}
-
-.about__owner {
-  display: grid;
-  grid-template-columns: minmax(12rem, 16rem) 1fr;
-  gap: var(--space-8);
-  align-items: center;
-  padding: var(--space-8);
-  border-radius: var(--radius-lg);
-  background: linear-gradient(
-    135deg,
-    var(--color-primary) 0%,
-    var(--color-primary-dark) 100%
-  );
-  color: var(--color-white);
-  box-shadow: var(--shadow-lg);
-}
-
-.about__owner-visual {
-  position: relative;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  aspect-ratio: 1;
-}
-
-.about__owner-mark {
-  position: relative;
-  z-index: 1;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 7rem;
-  height: 7rem;
-  border-radius: var(--radius-full);
-  background: rgba(255, 255, 255, 0.12);
-  border: 2px solid rgba(245, 166, 35, 0.5);
-}
-
-.about__owner-mark span {
-  font-family: var(--font-title);
-  font-size: 3rem;
-  font-weight: 600;
-  line-height: 1;
-  color: var(--color-accent);
-}
-
-.about__owner-ring {
-  position: absolute;
-  inset: 0;
-  border-radius: var(--radius-full);
-  border: 1px dashed rgba(255, 255, 255, 0.2);
-  animation: about-ring-spin 40s linear infinite;
-}
-
-@keyframes about-ring-spin {
-  to {
-    transform: rotate(360deg);
-  }
-}
-
-.about__owner-eyebrow {
-  margin: 0 0 var(--space-2);
-  font-family: var(--font-body);
-  font-size: var(--text-xs);
-  font-weight: 600;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  color: var(--color-accent);
-}
-
-.about__owner-name {
-  margin: 0 0 var(--space-4);
-  font-size: clamp(1.5rem, 3vw, var(--text-2xl));
-  color: var(--color-white);
-}
-
-.about__owner-bio {
-  margin: 0 0 var(--space-5);
-  max-width: 36rem;
-  font-size: var(--text-base);
-  line-height: var(--leading-relaxed);
-  color: rgba(255, 255, 255, 0.85);
-}
-
-.about__owner-tags {
-  display: flex;
-  flex-wrap: wrap;
-  gap: var(--space-2);
-  margin: 0;
-  padding: 0;
-  list-style: none;
-}
-
-.about__owner-tags li {
-  padding: var(--space-2) var(--space-4);
-  border-radius: var(--radius-full);
-  background: rgba(255, 255, 255, 0.1);
-  border: 1px solid rgba(255, 255, 255, 0.15);
-  font-size: var(--text-xs);
-  font-weight: 600;
-  letter-spacing: 0.04em;
-  color: rgba(255, 255, 255, 0.9);
-}
-
 /* ── CTA ── */
 
 .about__cta-wrap {
@@ -362,26 +252,6 @@
     gap: var(--space-4);
   }
 
-  .about__owner {
-    grid-template-columns: 1fr;
-    gap: var(--space-6);
-    padding: var(--space-6);
-    text-align: center;
-  }
-
-  .about__owner-visual {
-    max-width: 10rem;
-    margin: 0 auto;
-  }
-
-  .about__owner-bio {
-    margin-inline: auto;
-  }
-
-  .about__owner-tags {
-    justify-content: center;
-  }
-
   .about__cta-bar {
     flex-direction: column;
     align-items: stretch;
@@ -405,10 +275,8 @@
 
 @media (prefers-reduced-motion: reduce) {
   .about__impact,
-  .about__cta,
-  .about__owner-ring {
+  .about__cta {
     transition: none;
-    animation: none;
   }
 
   .about__impact:hover,
