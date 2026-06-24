@@ -23,7 +23,7 @@ export const serviceTiers = [
   {
     id: 'basic',
     name: 'Basic Site',
-    price: 1000,
+    price: 750,
     description:
       'A responsive, modern website that looks great on every device and covers everything your business needs to get online.',
     features: basicFeatures,
@@ -31,7 +31,7 @@ export const serviceTiers = [
   {
     id: 'advanced',
     name: 'Advanced Site',
-    price: 2500,
+    price: 2000,
     description:
       'A standout site that goes beyond the usual playbook, built to capture attention and feel unmistakably like your brand.',
     includesBasic: true,
@@ -50,15 +50,15 @@ export const serviceTiers = [
 ]
 
 export const contactPackageOptions = [
-  { value: 'basic', label: 'Basic Site', price: '$1,000 CAD' },
-  { value: 'advanced', label: 'Advanced Site', price: '$2,500 CAD' },
+  { value: 'basic', label: 'Basic Site', price: '$750 CAD' },
+  { value: 'advanced', label: 'Advanced Site', price: '$2,000 CAD' },
   { value: 'maintenance', label: 'Maintenance', price: '$75/month CAD' },
   { value: 'unsure', label: 'Not sure yet', price: 'Happy to advise' },
 ]
 
 export const PACKAGE_LABELS = {
-  basic: 'Basic Site ($1,000 CAD)',
-  advanced: 'Advanced Site ($2,500 CAD)',
+  basic: 'Basic Site ($750 CAD)',
+  advanced: 'Advanced Site ($2,000 CAD)',
   maintenance: 'Maintenance ($75/month CAD)',
   unsure: 'Not sure yet',
 }
