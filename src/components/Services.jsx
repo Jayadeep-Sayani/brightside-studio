@@ -11,6 +11,9 @@ function ServiceCard({ tier, delay, pageNavigate }) {
         className={`services__card${tier.featured ? ' services__card--featured' : ''}${tier.id === 'maintenance' ? ' services__card--maintenance' : ''}`}
       >
         {tier.featured && <span className="services__badge">Most impact</span>}
+        {tier.id === 'maintenance' && (
+          <span className="services__badge services__badge--addon">Monthly add-on</span>
+        )}
 
         <div className="services__card-top">
           <h3 className="services__card-name">{tier.name}</h3>
@@ -30,7 +33,7 @@ function ServiceCard({ tier, delay, pageNavigate }) {
           <div className="services__feature-groups">
             <div className="services__includes">
               <p className="services__includes-label">Includes Basic Site</p>
-              <ul className="services__includes-list">
+              <ul className="services__includes-grid">
                 {basicFeatures.map((feature) => (
                   <li key={feature}>{feature}</li>
                 ))}
@@ -72,8 +75,6 @@ function ServiceCard({ tier, delay, pageNavigate }) {
 
 function Services() {
   const pageNavigate = usePageNavigate()
-  const siteTiers = serviceTiers.filter((tier) => tier.id !== 'maintenance')
-  const maintenanceTier = serviceTiers.find((tier) => tier.id === 'maintenance')
 
   return (
     <section id="services" className="services">
@@ -88,27 +89,15 @@ function Services() {
           </p>
         </ScrollReveal>
 
-        <div className="services__layout">
-          <div className="services__site-grid">
-            {siteTiers.map((tier, index) => (
-              <ServiceCard
-                key={tier.id}
-                tier={tier}
-                delay={index * 120}
-                pageNavigate={pageNavigate}
-              />
-            ))}
-          </div>
-
-          {maintenanceTier && (
-            <div className="services__maintenance-row">
-              <ServiceCard
-                tier={maintenanceTier}
-                delay={240}
-                pageNavigate={pageNavigate}
-              />
-            </div>
-          )}
+        <div className="services__grid">
+          {serviceTiers.map((tier, index) => (
+            <ServiceCard
+              key={tier.id}
+              tier={tier}
+              delay={index * 100}
+              pageNavigate={pageNavigate}
+            />
+          ))}
         </div>
       </div>
     </section>
