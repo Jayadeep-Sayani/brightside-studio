@@ -4,82 +4,62 @@ import { assetUrl } from '../../utils/paths'
 
 const services = [
   {
-    name: 'Hair',
-    tag: 'Cuts & color',
-    items: ['Cut & style from $68', 'Color & gloss from $120', 'Event styling from $95'],
+    category: 'Hair',
+    description: 'Cuts, gloss, and color with a lived-in finish.',
+    items: [
+      { name: 'Cut & style', price: '$68' },
+      { name: 'Color & gloss', price: '$120' },
+      { name: 'Event styling', price: '$95' },
+    ],
   },
   {
-    name: 'Skin',
-    tag: 'Facials & brows',
-    items: ['Express facial $85', 'Glow peel $110', 'Brow shaping $32'],
+    category: 'Skin',
+    description: 'Facials and brow work that leave skin luminous.',
+    items: [
+      { name: 'Express facial', price: '$85' },
+      { name: 'Glow peel', price: '$110' },
+      { name: 'Brow shaping', price: '$32' },
+    ],
   },
   {
-    name: 'Nails',
-    tag: 'Mani & pedi',
-    items: ['Classic manicure $45', 'Gel set $62', 'Soft gel removal $28'],
+    category: 'Nails',
+    description: 'Classic and gel care with meticulous detail.',
+    items: [
+      { name: 'Classic manicure', price: '$45' },
+      { name: 'Gel set', price: '$62' },
+      { name: 'Soft gel removal', price: '$28' },
+    ],
   },
 ]
 
 const team = [
-  { name: 'Maya Chen', role: 'Lead stylist', focus: 'Precision cuts & lived-in color' },
-  { name: 'Jordan Ellis', role: 'Skin specialist', focus: 'Facials, peels & brow design' },
-  { name: 'Aria Santos', role: 'Nail artist', focus: 'Gel sets & natural nail care' },
+  { name: 'Maya Chen', role: 'Lead stylist' },
+  { name: 'Jordan Ellis', role: 'Skin specialist' },
+  { name: 'Aria Santos', role: 'Nail artist' },
 ]
 
-const testimonials = [
+const reviews = [
   {
-    quote:
-      'The space feels calm the second you walk in. Booking online took thirty seconds and my color turned out exactly how I described it.',
-    name: 'Elena R.',
-    detail: 'Balayage client',
-    featured: true,
+    text: 'Booking took thirty seconds and my color turned out exactly how I described it.',
+    author: 'Elena R.',
   },
   {
-    quote:
-      'I come for the facials and stay for the team. Everyone remembers your preferences without making it feel over the top.',
-    name: 'Sam K.',
-    detail: 'Monthly facial',
-    featured: false,
+    text: 'Everyone remembers your preferences without making it feel over the top.',
+    author: 'Sam K.',
   },
   {
-    quote:
-      'Best gel manicure I have had in Victoria. Clean lines, no rush, and unbelievably comfortable chairs.',
-    name: 'Priya M.',
-    detail: 'Gel manicure',
-    featured: false,
+    text: 'The calmest salon experience I have had in Victoria. I keep coming back.',
+    author: 'Priya M.',
   },
 ]
 
-const galleryItems = [
-  { label: 'Soft layers', position: 'center 18%' },
-  { label: 'Glow facial', position: '70% 35%' },
-  { label: 'Neutral gel', position: '30% 60%' },
-  { label: 'Evening event', position: 'center 42%' },
-]
+const slots = ['10:00', '11:30', '2:30', '4:15', '5:45']
 
-const marqueeWords = [
-  'Balayage',
-  'Gel sets',
-  'Express facials',
-  'Brow design',
-  'Scalp massage',
-  'Event styling',
-]
-
-const timeSlots = ['10:00', '11:30', '2:30', '4:15', '5:45']
-
-const hours = [
-  { day: 'Tuesday – Friday', time: '9:00 am – 6:00 pm' },
-  { day: 'Saturday', time: '9:00 am – 5:00 pm' },
-  { day: 'Sunday – Monday', time: 'Closed' },
-]
-
-const navLinks = [
-  { href: '#services', label: 'Services' },
-  { href: '#team', label: 'Team' },
-  { href: '#gallery', label: 'Gallery' },
-  { href: '#book', label: 'Book' },
-  { href: '#visit', label: 'Visit' },
+const nav = [
+  { id: 'services', label: 'Services' },
+  { id: 'studio', label: 'Studio' },
+  { id: 'team', label: 'Team' },
+  { id: 'book', label: 'Book' },
 ]
 
 function formatPhone(value) {
@@ -90,461 +70,347 @@ function formatPhone(value) {
 }
 
 function LumenSalonSite() {
-  const [navSolid, setNavSolid] = useState(false)
-  const [selectedSlot, setSelectedSlot] = useState('2:30')
-  const [selectedService, setSelectedService] = useState('Hair')
-  const [clientName, setClientName] = useState('')
-  const [clientPhone, setClientPhone] = useState('')
-  const [bookingConfirmed, setBookingConfirmed] = useState(false)
-  const [bookingError, setBookingError] = useState('')
+  const [scrolled, setScrolled] = useState(false)
+  const [slot, setSlot] = useState('2:30')
+  const [service, setService] = useState('Hair')
+  const [name, setName] = useState('')
+  const [phone, setPhone] = useState('')
+  const [confirmed, setConfirmed] = useState(false)
+  const [error, setError] = useState('')
 
   useEffect(() => {
     window.scrollTo({ top: 0, left: 0, behavior: 'instant' })
-
-    const onScroll = () => setNavSolid(window.scrollY > 24)
-
+    const onScroll = () => setScrolled(window.scrollY > 20)
     onScroll()
     window.addEventListener('scroll', onScroll, { passive: true })
     return () => window.removeEventListener('scroll', onScroll)
   }, [])
 
-  const selectSlot = (slot) => {
-    setSelectedSlot(slot)
-    setBookingConfirmed(false)
-    setBookingError('')
+  const pickSlot = (value) => {
+    setSlot(value)
+    setConfirmed(false)
+    setError('')
   }
 
-  const handleConfirmBooking = () => {
-    const phoneDigits = clientPhone.replace(/\D/g, '')
-
-    if (!clientName.trim()) {
-      setBookingError('Please add your name to confirm.')
+  const submitBooking = () => {
+    if (!name.trim()) {
+      setError('Add your name to confirm.')
       return
     }
-
-    if (phoneDigits.length < 10) {
-      setBookingError('Please enter a mobile number for your confirmation text.')
+    if (phone.replace(/\D/g, '').length < 10) {
+      setError('Add a mobile number for your confirmation text.')
       return
     }
-
-    setBookingError('')
-    setBookingConfirmed(true)
+    setError('')
+    setConfirmed(true)
   }
-
-  const featuredReview = testimonials.find((item) => item.featured)
-  const otherReviews = testimonials.filter((item) => !item.featured)
 
   return (
-    <div className="lumen-site">
-      <div className="lumen-site__grain" aria-hidden="true" />
-
-      <header
-        className={`lumen-site__header${navSolid ? ' lumen-site__header--solid' : ''}`}
-      >
-        <span className="lumen-site__logo">LUMEN</span>
-        <nav className="lumen-site__nav" aria-label="Lumen Salon">
-          {navLinks.map((link) => (
-            <a key={link.href} href={link.href}>
-              {link.label}
+    <div className="lumen">
+      <header className={`lumen__bar${scrolled ? ' lumen__bar--solid' : ''}`}>
+        <a className="lumen__brand" href="#top">
+          LUMEN
+        </a>
+        <nav className="lumen__links" aria-label="Primary">
+          {nav.map((item) => (
+            <a key={item.id} href={`#${item.id}`}>
+              {item.label}
             </a>
           ))}
         </nav>
-        <a href="#book" className="lumen-site__nav-cta">
-          Book now
+        <a className="lumen__cta" href="#book">
+          Book
         </a>
       </header>
 
-      <section className="lumen-site__hero">
-        <div className="lumen-site__hero-media" aria-hidden="true">
-          <img
-            src={assetUrl('/NailSalon.jpeg')}
-            alt=""
-            draggable={false}
-            fetchPriority="high"
-            decoding="async"
-          />
-        </div>
-        <div className="lumen-site__hero-blob" aria-hidden="true" />
-
-        <div className="lumen-site__hero-layout">
-          <div className="lumen-site__hero-body">
-            <p className="lumen-site__eyebrow">Hair · Skin · Nails · James Bay</p>
-            <h1 className="lumen-site__headline">
-              Illuminate your
-              <br />
-              <em>everyday glow</em>
+      <main id="top">
+        <section className="lumen__hero">
+          <div className="lumen__hero-copy">
+            <p className="lumen__kicker">James Bay · Victoria</p>
+            <h1 className="lumen__title">
+              Hair, skin & nails
+              <span>crafted with care</span>
             </h1>
-            <p className="lumen-site__lead">
-              A calm, elevated salon for cuts, facials, and nails. Soft light, warm
-              textures, and stylists who listen before they recommend.
+            <p className="lumen__lede">
+              A light-filled salon for people who want beautiful results without the
+              rush. Thoughtful consultations, soft textures, and a team that listens.
             </p>
-            <div className="lumen-site__booking-pill">
-              <div className="lumen-site__slots" role="group" aria-label="Available times today">
-                {timeSlots.map((slot) => (
+            <div className="lumen__hero-book">
+              <p className="lumen__hero-book-label">Today&apos;s openings</p>
+              <div className="lumen__slots" role="group" aria-label="Available times">
+                {slots.map((time) => (
                   <button
-                    key={slot}
+                    key={time}
                     type="button"
-                    className={
-                      slot === selectedSlot
-                        ? 'lumen-site__slot lumen-site__slot--active'
-                        : 'lumen-site__slot'
-                    }
-                    aria-pressed={slot === selectedSlot}
-                    onClick={() => selectSlot(slot)}
+                    className={time === slot ? 'lumen__slot is-active' : 'lumen__slot'}
+                    aria-pressed={time === slot}
+                    onClick={() => pickSlot(time)}
                   >
-                    {slot}
+                    {time}
                   </button>
                 ))}
               </div>
-              <a href="#book" className="lumen-site__btn lumen-site__btn--book">
-                Book {selectedSlot}
+              <a className="lumen__btn lumen__btn--dark" href="#book">
+                Reserve {slot}
               </a>
             </div>
           </div>
-        </div>
-      </section>
-
-      <div className="lumen-site__marquee" aria-hidden="true">
-        <div className="lumen-site__marquee-track">
-          {[...marqueeWords, ...marqueeWords].map((word, index) => (
-            <span key={`${word}-${index}`}>{word}</span>
-          ))}
-        </div>
-      </div>
-
-      <section className="lumen-site__editorial">
-        <div className="lumen-site__section-inner lumen-site__editorial-inner">
-          <div className="lumen-site__editorial-visual">
-            <img src={assetUrl('/NailSalon.jpeg')} alt="" draggable={false} />
-            <div className="lumen-site__editorial-frame" aria-hidden="true" />
+          <div className="lumen__hero-visual">
+            <img
+              src={assetUrl('/NailSalon.jpeg')}
+              alt=""
+              draggable={false}
+              fetchPriority="high"
+            />
+            <div className="lumen__hero-badge">
+              <span>New clients</span>
+              <strong>Glow Welcome · $99</strong>
+            </div>
           </div>
-          <div className="lumen-site__editorial-copy">
-            <p className="lumen-site__section-label">The salon</p>
-            <h2 className="lumen-site__section-title">
-              Light-filled, unhurried, and quietly luxurious
-            </h2>
-            <p>
-              Lumen was designed to feel soft and intentional from the moment you walk
-              in — natural textures, warm light, and a team that treats every appointment
-              like a small reset.
-            </p>
-            <p>
-              Whether you are in for a quick refresh or a slow afternoon of care, we keep
-              the experience calm, personal, and beautifully considered.
-            </p>
+        </section>
+
+        <section className="lumen__pillars" aria-label="Salon highlights">
+          <div className="lumen__wrap lumen__pillars-grid">
+            <article>
+              <h2>Consult</h2>
+              <p>Every appointment starts with listening — your hair, skin, schedule, and goals.</p>
+            </article>
+            <article>
+              <h2>Craft</h2>
+              <p>Precision techniques and products chosen for healthy, natural-looking results.</p>
+            </article>
+            <article>
+              <h2>Care</h2>
+              <p>A calm room, warm light, and stylists who make you feel looked after.</p>
+            </article>
           </div>
-        </div>
-      </section>
+        </section>
 
-      <div className="lumen-site__stats" aria-label="Salon highlights">
-        <div className="lumen-site__section-inner lumen-site__stats-inner">
-          <div>
-            <span className="lumen-site__stat-value">4.9</span>
-            <span className="lumen-site__stat-label">Client rating</span>
-          </div>
-          <div>
-            <span className="lumen-site__stat-value">12+</span>
-            <span className="lumen-site__stat-label">Years in Victoria</span>
-          </div>
-          <div>
-            <span className="lumen-site__stat-value">Same-week</span>
-            <span className="lumen-site__stat-label">Appointments open</span>
-          </div>
-        </div>
-      </div>
-
-      <section className="lumen-site__promo" aria-label="New client offer">
-        <div className="lumen-site__section-inner lumen-site__promo-inner">
-          <div className="lumen-site__promo-ring" aria-hidden="true" />
-          <p className="lumen-site__promo-label">New client offer</p>
-          <p className="lumen-site__promo-title">The Glow Welcome — $99</p>
-          <p className="lumen-site__promo-copy">
-            Express facial, brow tidy, and a complimentary scalp massage with your first visit.
-          </p>
-        </div>
-      </section>
-
-      <section className="lumen-site__services" id="services">
-        <div className="lumen-site__section-inner">
-          <header className="lumen-site__section-header lumen-site__section-header--left">
-            <p className="lumen-site__section-label">Services</p>
-            <h2 className="lumen-site__section-title">Treatments tailored to you</h2>
-            <p className="lumen-site__section-intro">
-              Every visit starts with a short consultation so your stylist understands your
-              hair, skin, and schedule before recommending a plan.
-            </p>
-          </header>
-          <div className="lumen-site__service-grid">
-            {services.map((group, index) => (
-              <article
-                key={group.name}
-                className={`lumen-site__service-card${
-                  index === 0 ? ' lumen-site__service-card--feature' : ''
-                }`}
-              >
-                <span className="lumen-site__service-index" aria-hidden="true">
-                  {String(index + 1).padStart(2, '0')}
-                </span>
-                <p className="lumen-site__service-tag">{group.tag}</p>
-                <h3>{group.name}</h3>
-                <ul>
-                  {group.items.map((item) => (
-                    <li key={item}>{item}</li>
-                  ))}
-                </ul>
-                <a href="#book" className="lumen-site__service-link">
-                  Book {group.name.toLowerCase()} →
-                </a>
-              </article>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      <section className="lumen-site__pullquote" aria-hidden="true">
-        <blockquote>
-          <p>Beauty should feel calm, not complicated.</p>
-        </blockquote>
-      </section>
-
-      <section className="lumen-site__team" id="team">
-        <div className="lumen-site__section-inner">
-          <header className="lumen-site__section-header lumen-site__section-header--left">
-            <p className="lumen-site__section-label">Our team</p>
-            <h2 className="lumen-site__section-title">Stylists who listen first</h2>
-          </header>
-          <div className="lumen-site__team-grid">
-            {team.map((member, index) => (
-              <article
-                key={member.name}
-                className="lumen-site__team-card"
-                style={{ '--team-accent': index === 1 ? '#c9958d' : '#ae7081' }}
-              >
-                <div className="lumen-site__team-avatar" aria-hidden="true">
-                  <span>{member.name.charAt(0)}</span>
-                </div>
-                <h3>{member.name}</h3>
-                <p className="lumen-site__team-role">{member.role}</p>
-                <p className="lumen-site__team-focus">{member.focus}</p>
-              </article>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      <section className="lumen-site__gallery" id="gallery">
-        <div className="lumen-site__section-inner">
-          <header className="lumen-site__section-header">
-            <p className="lumen-site__section-label">Gallery</p>
-            <h2 className="lumen-site__section-title">Recent looks from the chair</h2>
-          </header>
-          <div className="lumen-site__gallery-grid">
-            {galleryItems.map((item, index) => (
-              <figure
-                key={item.label}
-                className={`lumen-site__gallery-item${
-                  index === 0 || index === 3 ? ' lumen-site__gallery-item--tall' : ''
-                }`}
-              >
-                <img
-                  src={assetUrl('/NailSalon.jpeg')}
-                  alt=""
-                  draggable={false}
-                  style={{ objectPosition: item.position }}
-                />
-                <figcaption>{item.label}</figcaption>
-              </figure>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      <section className="lumen-site__book" id="book">
-        <div className="lumen-site__section-inner lumen-site__book-inner">
-          <div className="lumen-site__book-copy">
-            <p className="lumen-site__section-label">Book online</p>
-            <h2 className="lumen-site__section-title">Reserve your chair</h2>
-            <p>
-              Choose a time, add your mobile number, and we will text your confirmation.
-              Need help? Call <a href="tel:+12505550142">(250) 555-0142</a>.
-            </p>
-          </div>
-
-          <div className="lumen-site__book-panel">
-            {bookingConfirmed ? (
-              <div className="lumen-site__booking-success" role="status">
-                <p className="lumen-site__booking-success-eyebrow">Confirmed</p>
-                <h3 className="lumen-site__booking-success-title">
-                  You are booked, {clientName.split(' ')[0]}.
-                </h3>
-                <p>
-                  {selectedService} · Tuesday, June 24 at {selectedSlot}
-                </p>
-                <p>A confirmation text is on its way to {clientPhone}.</p>
-                <button
-                  type="button"
-                  className="lumen-site__btn lumen-site__btn--ghost-panel"
-                  onClick={() => setBookingConfirmed(false)}
-                >
-                  Change booking
-                </button>
-              </div>
-            ) : (
-              <>
-                <p className="lumen-site__book-date">Tuesday, June 24</p>
-
-                <label className="lumen-site__field">
-                  <span>Service</span>
-                  <select
-                    value={selectedService}
-                    onChange={(event) => {
-                      setSelectedService(event.target.value)
-                      setBookingConfirmed(false)
-                    }}
-                  >
-                    {services.map((group) => (
-                      <option key={group.name} value={group.name}>
-                        {group.name}
-                      </option>
-                    ))}
-                  </select>
-                </label>
-
-                <div className="lumen-site__field">
-                  <span>Available times</span>
-                  <div className="lumen-site__slots lumen-site__slots--panel" role="group" aria-label="Available times">
-                    {timeSlots.map((slot) => (
-                      <button
-                        key={slot}
-                        type="button"
-                        className={
-                          slot === selectedSlot
-                            ? 'lumen-site__slot lumen-site__slot--active'
-                            : 'lumen-site__slot'
-                        }
-                        aria-pressed={slot === selectedSlot}
-                        onClick={() => selectSlot(slot)}
-                      >
-                        {slot}
-                      </button>
-                    ))}
+        <section className="lumen__services" id="services">
+          <div className="lumen__wrap">
+            <header className="lumen__section-head">
+              <p className="lumen__label">Menu</p>
+              <h2 className="lumen__heading">Services & pricing</h2>
+            </header>
+            <div className="lumen__menu">
+              {services.map((group) => (
+                <div key={group.category} className="lumen__menu-group">
+                  <div className="lumen__menu-head">
+                    <h3>{group.category}</h3>
+                    <p>{group.description}</p>
                   </div>
+                  <ul>
+                    {group.items.map((item) => (
+                      <li key={item.name}>
+                        <span>{item.name}</span>
+                        <span>{item.price}</span>
+                      </li>
+                    ))}
+                  </ul>
+                  <a className="lumen__text-link" href="#book">
+                    Book {group.category.toLowerCase()}
+                  </a>
                 </div>
-
-                <label className="lumen-site__field">
-                  <span>Your name</span>
-                  <input
-                    type="text"
-                    name="name"
-                    autoComplete="name"
-                    placeholder="Alex Morgan"
-                    value={clientName}
-                    onChange={(event) => setClientName(event.target.value)}
-                  />
-                </label>
-
-                <label className="lumen-site__field">
-                  <span>Mobile number</span>
-                  <input
-                    type="tel"
-                    name="phone"
-                    autoComplete="tel"
-                    inputMode="tel"
-                    placeholder="(250) 555-0142"
-                    value={clientPhone}
-                    onChange={(event) => setClientPhone(formatPhone(event.target.value))}
-                  />
-                </label>
-
-                {bookingError ? (
-                  <p className="lumen-site__booking-error" role="alert">
-                    {bookingError}
-                  </p>
-                ) : null}
-
-                <button
-                  type="button"
-                  className="lumen-site__btn lumen-site__btn--primary lumen-site__btn--wide"
-                  onClick={handleConfirmBooking}
-                >
-                  Confirm booking
-                </button>
-              </>
-            )}
+              ))}
+            </div>
           </div>
-        </div>
-      </section>
+        </section>
 
-      <section className="lumen-site__testimonials" aria-label="Client reviews">
-        <div className="lumen-site__section-inner">
-          <header className="lumen-site__section-header lumen-site__section-header--left">
-            <p className="lumen-site__section-label">Reviews</p>
-            <h2 className="lumen-site__section-title">Loved by our regulars</h2>
-          </header>
-          <div className="lumen-site__testimonial-layout">
-            {featuredReview ? (
-              <blockquote className="lumen-site__testimonial-card lumen-site__testimonial-card--feature">
-                <p>&ldquo;{featuredReview.quote}&rdquo;</p>
-                <footer>
-                  <cite>{featuredReview.name}</cite>
-                  <span>{featuredReview.detail}</span>
-                </footer>
-              </blockquote>
-            ) : null}
-            <div className="lumen-site__testimonial-stack">
-              {otherReviews.map((item) => (
-                <blockquote key={item.name} className="lumen-site__testimonial-card">
-                  <p>&ldquo;{item.quote}&rdquo;</p>
-                  <footer>
-                    <cite>{item.name}</cite>
-                    <span>{item.detail}</span>
-                  </footer>
+        <section className="lumen__studio" id="studio">
+          <div className="lumen__studio-grid">
+            <div className="lumen__studio-photo lumen__studio-photo--a">
+              <img src={assetUrl('/NailSalon.jpeg')} alt="" style={{ objectPosition: '20% 30%' }} />
+            </div>
+            <div className="lumen__studio-copy">
+              <p className="lumen__label">The studio</p>
+              <h2 className="lumen__heading">Designed to feel like a deep breath</h2>
+              <p>
+                Lumen sits on a quiet stretch of Fairfield Road — soft blush tones, natural
+                wood, and windows that pull in afternoon light. It is the kind of place you
+                notice slowing down the moment you walk in.
+              </p>
+              <p>
+                We built the experience around unhurried appointments, intuitive booking,
+                and stylists who remember the details that matter.
+              </p>
+            </div>
+            <div className="lumen__studio-photo lumen__studio-photo--b">
+              <img src={assetUrl('/NailSalon.jpeg')} alt="" style={{ objectPosition: '75% 40%' }} />
+            </div>
+          </div>
+        </section>
+
+        <section className="lumen__team" id="team">
+          <div className="lumen__wrap">
+            <header className="lumen__section-head lumen__section-head--center">
+              <p className="lumen__label">Team</p>
+              <h2 className="lumen__heading">Meet your stylists</h2>
+            </header>
+            <div className="lumen__team-grid">
+              {team.map((member) => (
+                <article key={member.name} className="lumen__team-card">
+                  <div className="lumen__team-photo" aria-hidden="true">
+                    <span>{member.name.charAt(0)}</span>
+                  </div>
+                  <h3>{member.name}</h3>
+                  <p>{member.role}</p>
+                </article>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        <section className="lumen__book" id="book">
+          <div className="lumen__wrap lumen__book-grid">
+            <div className="lumen__book-copy">
+              <p className="lumen__label">Book online</p>
+              <h2 className="lumen__heading">Reserve your appointment</h2>
+              <p>
+                Pick a service and time, then leave your mobile number. We will text your
+                confirmation within a few minutes.
+              </p>
+              <dl className="lumen__book-meta">
+                <div>
+                  <dt>Location</dt>
+                  <dd>124 Fairfield Road, Victoria BC</dd>
+                </div>
+                <div>
+                  <dt>Phone</dt>
+                  <dd>
+                    <a href="tel:+12505550142">(250) 555-0142</a>
+                  </dd>
+                </div>
+                <div>
+                  <dt>Hours</dt>
+                  <dd>Tue–Fri 9–6 · Sat 9–5</dd>
+                </div>
+              </dl>
+            </div>
+
+            <div className="lumen__panel">
+              {confirmed ? (
+                <div className="lumen__confirm" role="status">
+                  <p className="lumen__label">Confirmed</p>
+                  <h3>You&apos;re booked, {name.split(' ')[0]}.</h3>
+                  <p>
+                    {service} on Tuesday, June 24 at {slot}.
+                  </p>
+                  <p>Confirmation heading to {phone}.</p>
+                  <button
+                    type="button"
+                    className="lumen__btn lumen__btn--line"
+                    onClick={() => setConfirmed(false)}
+                  >
+                    Edit booking
+                  </button>
+                </div>
+              ) : (
+                <form
+                  className="lumen__form"
+                  onSubmit={(event) => {
+                    event.preventDefault()
+                    submitBooking()
+                  }}
+                >
+                  <p className="lumen__form-date">Tuesday, June 24</p>
+
+                  <label className="lumen__field">
+                    <span>Service</span>
+                    <select value={service} onChange={(e) => setService(e.target.value)}>
+                      {services.map((group) => (
+                        <option key={group.category} value={group.category}>
+                          {group.category}
+                        </option>
+                      ))}
+                    </select>
+                  </label>
+
+                  <fieldset className="lumen__field">
+                    <legend>Time</legend>
+                    <div className="lumen__slots lumen__slots--form">
+                      {slots.map((time) => (
+                        <button
+                          key={time}
+                          type="button"
+                          className={time === slot ? 'lumen__slot is-active' : 'lumen__slot'}
+                          aria-pressed={time === slot}
+                          onClick={() => pickSlot(time)}
+                        >
+                          {time}
+                        </button>
+                      ))}
+                    </div>
+                  </fieldset>
+
+                  <label className="lumen__field">
+                    <span>Name</span>
+                    <input
+                      type="text"
+                      autoComplete="name"
+                      placeholder="Alex Morgan"
+                      value={name}
+                      onChange={(e) => setName(e.target.value)}
+                    />
+                  </label>
+
+                  <label className="lumen__field">
+                    <span>Mobile</span>
+                    <input
+                      type="tel"
+                      autoComplete="tel"
+                      inputMode="tel"
+                      placeholder="(250) 555-0142"
+                      value={phone}
+                      onChange={(e) => setPhone(formatPhone(e.target.value))}
+                    />
+                  </label>
+
+                  {error ? (
+                    <p className="lumen__error" role="alert">
+                      {error}
+                    </p>
+                  ) : null}
+
+                  <button type="submit" className="lumen__btn lumen__btn--fill">
+                    Confirm booking
+                  </button>
+                </form>
+              )}
+            </div>
+          </div>
+        </section>
+
+        <section className="lumen__reviews" aria-label="Reviews">
+          <div className="lumen__wrap">
+            <header className="lumen__section-head lumen__section-head--center">
+              <p className="lumen__label">Reviews</p>
+              <h2 className="lumen__heading">What clients say</h2>
+            </header>
+            <div className="lumen__reviews-grid">
+              {reviews.map((item) => (
+                <blockquote key={item.author}>
+                  <p>&ldquo;{item.text}&rdquo;</p>
+                  <footer>{item.author}</footer>
                 </blockquote>
               ))}
             </div>
           </div>
-        </div>
-      </section>
+        </section>
+      </main>
 
-      <section className="lumen-site__visit" id="visit">
-        <div className="lumen-site__section-inner lumen-site__visit-inner">
-          <div className="lumen-site__visit-copy">
-            <p className="lumen-site__section-label">Visit us</p>
-            <h2 className="lumen-site__section-title">James Bay, Victoria</h2>
-            <p className="lumen-site__visit-address">124 Fairfield Road, Victoria BC</p>
-            <p className="lumen-site__visit-phone">
-              <a href="tel:+12505550142">(250) 555-0142</a>
-            </p>
-            <ul className="lumen-site__hours">
-              {hours.map((row) => (
-                <li key={row.day}>
-                  <span>{row.day}</span>
-                  <span>{row.time}</span>
-                </li>
-              ))}
-            </ul>
-          </div>
-          <div className="lumen-site__map" aria-hidden="true">
-            <span>Map</span>
-            <p>Fairfield Plaza · Street parking available</p>
-          </div>
-        </div>
-      </section>
-
-      <footer className="lumen-site__footer" id="contact">
-        <div className="lumen-site__section-inner lumen-site__footer-inner">
+      <footer className="lumen__footer">
+        <div className="lumen__wrap lumen__footer-grid">
           <div>
-            <span className="lumen-site__logo">LUMEN</span>
+            <span className="lumen__brand lumen__brand--light">LUMEN</span>
             <p>124 Fairfield Road, Victoria BC</p>
-            <p>Open Tue–Sat · 9am–6pm</p>
           </div>
-          <div className="lumen-site__footer-links">
-            {navLinks.map((link) => (
-              <a key={link.href} href={link.href}>
-                {link.label}
+          <nav aria-label="Footer">
+            {nav.map((item) => (
+              <a key={item.id} href={`#${item.id}`}>
+                {item.label}
               </a>
             ))}
-          </div>
+          </nav>
         </div>
       </footer>
     </div>
