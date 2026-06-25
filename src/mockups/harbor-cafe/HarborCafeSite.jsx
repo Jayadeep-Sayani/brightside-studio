@@ -1,3 +1,4 @@
+import ScrollReveal from '../../components/ScrollReveal'
 import { assetUrl } from '../../utils/paths'
 import './HarborCafeSite.css'
 
@@ -77,7 +78,7 @@ function HarborCafeSite() {
 
       <main id="top">
         <section className="harbor-hero">
-          <div className="harbor-hero__copy">
+          <ScrollReveal className="harbor-hero__copy">
             <p className="harbor-hero__eyebrow">Est. 2018 · Waterfront District</p>
             <h1 className="harbor-hero__title">
               Morning light.
@@ -95,9 +96,9 @@ function HarborCafeSite() {
                 Hours &amp; Location
               </a>
             </div>
-          </div>
+          </ScrollReveal>
 
-          <div className="harbor-hero__visual">
+          <ScrollReveal className="harbor-hero__visual" delay={120}>
             <div className="harbor-hero__frame">
               <img
                 src={assetUrl('/HarborCafeHero.jpg')}
@@ -109,7 +110,7 @@ function HarborCafeSite() {
               />
             </div>
             <p className="harbor-hero__caption">Open from first light</p>
-          </div>
+          </ScrollReveal>
         </section>
 
         <div className="harbor-ticker" aria-hidden="true">
@@ -127,18 +128,23 @@ function HarborCafeSite() {
 
         <section id="menu" className="harbor-section harbor-menu">
           <div className="harbor-menu__inner">
-            <header className="harbor-section-head">
+            <ScrollReveal as="header" className="harbor-section-head">
               <p className="harbor-section-head__eyebrow">Today at the café</p>
               <h2 className="harbor-section-head__title">A few favorites worth trying</h2>
               <p className="harbor-section-head__lead">
                 The menu shifts with the season. These are the plates and pours
                 people ask for most mornings by the water.
               </p>
-            </header>
+            </ScrollReveal>
 
             <ul className="harbor-menu__grid">
-              {menuItems.map((item) => (
-                <li key={item.name} className="harbor-menu__card">
+              {menuItems.map((item, index) => (
+                <ScrollReveal
+                  key={item.name}
+                  as="li"
+                  className="harbor-menu__card"
+                  delay={index * 90}
+                >
                   <div className="harbor-menu__thumb">
                     <img src={assetUrl(item.image)} alt={item.alt} loading="lazy" />
                   </div>
@@ -149,7 +155,7 @@ function HarborCafeSite() {
                     </div>
                     <p>{item.note}</p>
                   </div>
-                </li>
+                </ScrollReveal>
               ))}
             </ul>
           </div>
@@ -157,32 +163,34 @@ function HarborCafeSite() {
 
         <section id="gallery" className="harbor-section harbor-gallery">
           <div className="harbor-gallery__inner">
-            <header className="harbor-section-head harbor-section-head--center">
+            <ScrollReveal as="header" className="harbor-section-head harbor-section-head--center">
               <p className="harbor-section-head__eyebrow">Inside the café</p>
               <h2 className="harbor-section-head__title">Moments from the harbor</h2>
               <p className="harbor-section-head__lead">
                 Warm light, fresh bakes, and the quiet hum of a morning by the water.
               </p>
-            </header>
+            </ScrollReveal>
 
             <div className="harbor-gallery__grid">
-              {galleryImages.map((item) => (
-                <figure
+              {galleryImages.map((item, index) => (
+                <ScrollReveal
                   key={item.src}
+                  as="figure"
                   className={`harbor-gallery__item harbor-gallery__item--${item.layout}`}
+                  delay={index * 80}
                 >
                   <div className="harbor-gallery__frame">
                     <img src={assetUrl(item.src)} alt={item.alt} loading="lazy" />
                   </div>
                   <figcaption>{item.caption}</figcaption>
-                </figure>
+                </ScrollReveal>
               ))}
             </div>
           </div>
         </section>
 
         <section id="story" className="harbor-section harbor-story">
-          <div className="harbor-story__inner">
+          <ScrollReveal className="harbor-story__inner" delay={60}>
             <div className="harbor-story__media">
               <img
                 src={assetUrl('/harbor/gallery-table.jpg')}
@@ -214,12 +222,12 @@ function HarborCafeSite() {
                 </p>
               </div>
             </div>
-          </div>
+          </ScrollReveal>
         </section>
 
         <section id="visit" className="harbor-section harbor-visit">
           <div className="harbor-visit__inner">
-            <div className="harbor-visit__card harbor-visit__card--hours">
+            <ScrollReveal className="harbor-visit__card harbor-visit__card--hours">
               <p className="harbor-section-head__eyebrow">Hours</p>
               <h2 className="harbor-visit__title">When we&apos;re open</h2>
               <div className="harbor-visit__panel">
@@ -232,9 +240,9 @@ function HarborCafeSite() {
                   ))}
                 </ul>
               </div>
-            </div>
+            </ScrollReveal>
 
-            <div className="harbor-visit__card harbor-visit__card--location">
+            <ScrollReveal className="harbor-visit__card harbor-visit__card--location" delay={100}>
               <p className="harbor-section-head__eyebrow">Find us</p>
               <h2 className="harbor-visit__title">On the waterfront</h2>
               <div className="harbor-visit__panel">
@@ -256,17 +264,17 @@ function HarborCafeSite() {
                   sunny weekends.
                 </p>
               </div>
-            </div>
+            </ScrollReveal>
           </div>
         </section>
       </main>
 
-      <footer className="harbor-site__footer">
+      <ScrollReveal as="footer" className="harbor-site__footer scroll-reveal--fade">
         <p className="harbor-site__footer-logo">Harbor Café</p>
         <p className="harbor-site__footer-note">
           Sample design mockup by Brightside Studio. Not a live business site.
         </p>
-      </footer>
+      </ScrollReveal>
     </div>
   )
 }
