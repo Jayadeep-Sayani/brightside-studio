@@ -3,6 +3,7 @@ import ScrollReveal from './ScrollReveal'
 import { CafeMockup, SalonMockup, BistroMockup } from './MockupPreviews'
 import { projects } from '../data/projects'
 import { usePageNavigate } from '../hooks/usePageNavigate'
+import { routeHref } from '../utils/paths'
 
 const mockupMap = {
   cafe: CafeMockup,
@@ -70,6 +71,11 @@ function PastWork() {
                           <li key={tag}>{tag}</li>
                         ))}
                       </ul>
+                      {project.demoPath && (
+                        <a href={routeHref(project.demoPath)} className="past-work__demo-link">
+                          View full mockup
+                        </a>
+                      )}
                     </div>
                   </article>
                 </ScrollReveal>

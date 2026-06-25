@@ -1,7 +1,5 @@
 import './Hero.css'
 import { CafeMockup, SalonMockup, BistroMockup } from './MockupPreviews'
-import { usePageNavigate } from '../hooks/usePageNavigate'
-import { routeHref } from '../utils/paths'
 
 const mockups = [
   {
@@ -38,6 +36,9 @@ const mockupComponents = {
   salon: SalonMockup,
   bistro: BistroMockup,
 }
+
+import { usePageNavigate } from '../hooks/usePageNavigate'
+import { routeHref } from '../utils/paths'
 
 function Hero() {
   const pageNavigate = usePageNavigate()

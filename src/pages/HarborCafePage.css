@@ -1,0 +1,33 @@
+.harbor-mockup {
+  min-height: 100vh;
+  background: #faf6f0;
+}
+
+.harbor-mockup__back {
+  position: fixed;
+  top: var(--space-4);
+  left: var(--space-4);
+  z-index: 10;
+  padding: var(--space-2) var(--space-4);
+  border-radius: var(--radius-full);
+  background: rgba(255, 255, 255, 0.9);
+  border: 1px solid #ebe3d8;
+  box-shadow: var(--shadow-sm);
+  font-family: var(--font-body);
+  font-size: var(--text-xs);
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-decoration: none;
+  color: #3d2914;
+  backdrop-filter: blur(6px);
+}
+
+.harbor-mockup__back:hover {
+  background: #ffffff;
+  color: #3d2914;
+}
+
+.harbor-mockup__back:focus-visible {
+  outline: 2px solid #c67b4a;
+  outline-offset: 3px;
+}
