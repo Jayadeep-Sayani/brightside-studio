@@ -222,28 +222,40 @@ function HarborCafeSite() {
             <div className="harbor-visit__card harbor-visit__card--hours">
               <p className="harbor-section-head__eyebrow">Hours</p>
               <h2 className="harbor-visit__title">When we&apos;re open</h2>
-              <ul className="harbor-visit__hours">
-                {hours.map((row) => (
-                  <li key={row.days}>
-                    <span>{row.days}</span>
-                    <span>{row.time}</span>
-                  </li>
-                ))}
-              </ul>
+              <div className="harbor-visit__panel">
+                <ul className="harbor-visit__hours">
+                  {hours.map((row) => (
+                    <li key={row.days}>
+                      <span>{row.days}</span>
+                      <span>{row.time}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
             </div>
 
             <div className="harbor-visit__card harbor-visit__card--location">
               <p className="harbor-section-head__eyebrow">Find us</p>
               <h2 className="harbor-visit__title">On the waterfront</h2>
-              <p className="harbor-visit__address">
-                14 Pier Lane
-                <br />
-                Waterfront District
-              </p>
-              <p className="harbor-visit__note">
-                Street parking along the harbor walk. Patio seats fill quickly on
-                sunny weekends.
-              </p>
+              <div className="harbor-visit__panel">
+                <p className="harbor-visit__address">
+                  14 Pier Lane
+                  <br />
+                  Waterfront District
+                </p>
+                <div className="harbor-visit__map">
+                  <iframe
+                    title="Map showing Harbor Café on the waterfront"
+                    src="https://www.openstreetmap.org/export/embed.html?bbox=-122.4188%2C37.8070%2C-122.4088%2C37.8120&layer=mapnik&marker=37.8095%2C-122.4138"
+                    loading="lazy"
+                    referrerPolicy="no-referrer-when-downgrade"
+                  />
+                </div>
+                <p className="harbor-visit__note">
+                  Street parking along the harbor walk. Patio seats fill quickly on
+                  sunny weekends.
+                </p>
+              </div>
             </div>
           </div>
         </section>
