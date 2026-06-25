@@ -73,12 +73,6 @@ function HarborCafeSite() {
   const closeMenu = () => setMenuOpen(false)
 
   useEffect(() => {
-    document.body.classList.toggle('menu-open', menuOpen)
-
-    return () => document.body.classList.remove('menu-open')
-  }, [menuOpen])
-
-  useEffect(() => {
     const onKeyDown = (event) => {
       if (event.key === 'Escape') {
         setMenuOpen(false)
@@ -123,6 +117,15 @@ function HarborCafeSite() {
             </a>
           ))}
         </nav>
+
+        {menuOpen ? (
+          <button
+            type="button"
+            className="harbor-site__menu-backdrop"
+            aria-label="Close menu"
+            onClick={closeMenu}
+          />
+        ) : null}
       </header>
 
       <main id="top">
