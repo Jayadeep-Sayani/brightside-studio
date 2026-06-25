@@ -104,19 +104,19 @@ function HarborCafeSite() {
             <span />
             <span />
           </button>
-        </div>
 
-        <nav
-          id="harbor-site-nav"
-          className={`harbor-site__nav${menuOpen ? ' harbor-site__nav--open' : ''}`}
-          aria-label="Harbor Café"
-        >
-          {navLinks.map((link) => (
-            <a key={link.href} href={link.href} onClick={closeMenu}>
-              {link.label}
-            </a>
-          ))}
-        </nav>
+          <nav
+            id="harbor-site-nav"
+            className={`harbor-site__nav${menuOpen ? ' harbor-site__nav--open' : ''}`}
+            aria-label="Harbor Café"
+          >
+            {navLinks.map((link) => (
+              <a key={link.href} href={link.href} onClick={closeMenu}>
+                {link.label}
+              </a>
+            ))}
+          </nav>
+        </div>
 
         {menuOpen ? (
           <button

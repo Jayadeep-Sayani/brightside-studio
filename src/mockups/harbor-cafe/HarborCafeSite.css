@@ -141,6 +141,33 @@
   transform: translateY(-0.42rem) rotate(-45deg);
 }
 
+.harbor-site__menu-backdrop {
+  display: none;
+}
+
+@media (min-width: 769px) {
+  .harbor-site__nav {
+    position: static;
+    max-height: none;
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+    overflow: visible;
+    padding: 0;
+    background: transparent;
+    border: none;
+    box-shadow: none;
+    flex-direction: row;
+    align-items: center;
+  }
+
+  .harbor-site__nav a {
+    padding: 0;
+    border-bottom: none;
+    font-size: 0.72rem;
+  }
+}
+
 .harbor-hero {
   position: relative;
   z-index: 1;
@@ -858,6 +885,7 @@
   }
 
   .harbor-site__menu-backdrop {
+    display: block;
     position: fixed;
     inset: 0;
     top: var(--hc-nav-height);
