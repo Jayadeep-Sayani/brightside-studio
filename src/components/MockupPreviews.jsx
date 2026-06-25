@@ -31,18 +31,21 @@ export function CafeMockup({ name, type }) {
             <span className="site-preview__logo">Harbor Café</span>
             <nav className="site-preview__links">
               <span>Menu</span>
+              <span>Gallery</span>
               <span>Hours</span>
-              <span>Order</span>
+              <span>Story</span>
             </nav>
           </header>
           <div className="site-preview__hero site-preview__hero--split">
             <div className="site-preview__copy">
               <p className="site-preview__eyebrow">Est. 2018 · Waterfront District</p>
               <h2 className="site-preview__headline">
-                Morning light.<br />Harbor coffee.
+                Morning light.
+                <span>Harbor coffee.</span>
               </h2>
               <p className="site-preview__text">
-                Small-batch roasts, baked fresh daily, and a porch that faces the bay.
+                Small-batch roasts, pastries pulled warm from the oven, and a porch
+                that faces the bay.
               </p>
               <span className="site-preview__btn site-preview__btn--cafe">
                 See Today&apos;s Menu
@@ -51,7 +54,7 @@ export function CafeMockup({ name, type }) {
             <div className="site-preview__visual site-preview__visual--cafe" aria-hidden="true">
               <img
                 className="site-preview__photo"
-                src={assetUrl('/CafeInterior.jpg')}
+                src={assetUrl('/HarborCafeHero.jpg')}
                 alt=""
                 draggable={false}
               />

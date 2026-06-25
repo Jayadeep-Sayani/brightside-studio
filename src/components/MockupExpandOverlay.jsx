@@ -41,9 +41,8 @@ function MockupExpandOverlay({ demoId, onClose }) {
     <div className="mockup-expand" role="dialog" aria-modal="true" aria-label={`${label} mockup preview`}>
       <button type="button" className="mockup-expand__backdrop" aria-label="Close mockup" onClick={onClose} />
 
-      <div className={`mockup-expand__frame mockup-expand__frame--${variant}`}>
-        <div className="mockup-expand__chrome">
-          <MockupChrome url={url} variant={variant} />
+      <div className="mockup-expand__shell">
+        <div className="mockup-expand__toolbar">
           <button
             ref={closeRef}
             type="button"
@@ -51,12 +50,16 @@ function MockupExpandOverlay({ demoId, onClose }) {
             aria-label="Close mockup"
             onClick={onClose}
           >
-            Close
+            Close preview
           </button>
         </div>
 
-        <div className="mockup-expand__screen">
-          <Site />
+        <div className={`mockup-expand__frame mockup-expand__frame--${variant}`}>
+          <MockupChrome url={url} variant={variant} />
+
+          <div className="mockup-expand__screen">
+            <Site />
+          </div>
         </div>
       </div>
     </div>,

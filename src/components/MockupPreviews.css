@@ -127,6 +127,11 @@
   color: var(--sp-text);
 }
 
+.site-preview--cafe .site-preview__headline span {
+  display: block;
+  color: var(--sp-accent);
+}
+
 .site-preview--cafe .site-preview__text {
   margin: 0 0 0.55rem;
   font-family: var(--sp-font-body);
