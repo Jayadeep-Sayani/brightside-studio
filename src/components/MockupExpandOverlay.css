@@ -1,0 +1,121 @@
+.mockup-expand {
+  position: fixed;
+  inset: 0;
+  z-index: 200;
+  display: flex;
+  flex-direction: column;
+  padding: clamp(0.5rem, 2vw, 1.25rem);
+  padding-bottom: 0;
+  animation: mockup-expand-in 0.32s ease;
+}
+
+.mockup-expand__backdrop {
+  position: absolute;
+  inset: 0;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  background: rgba(15, 30, 50, 0.55);
+  cursor: pointer;
+}
+
+.mockup-expand__frame {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  min-height: 0;
+  width: 100%;
+  max-width: 100%;
+  margin: 0 auto;
+  border-radius: var(--radius-lg) var(--radius-lg) 0 0;
+  overflow: hidden;
+  background: #f8f9fb;
+  border: 1px solid rgba(255, 255, 255, 0.85);
+  box-shadow:
+    0 1.5rem 4rem rgba(15, 30, 50, 0.28),
+    0 0 0 1px rgba(15, 76, 138, 0.08);
+}
+
+.mockup-expand__frame--cafe {
+  background: #faf6f0;
+}
+
+.mockup-expand__chrome {
+  position: relative;
+  flex-shrink: 0;
+}
+
+.mockup-expand__chrome .mockup__browser {
+  padding-right: 5.5rem;
+}
+
+.mockup-expand__close {
+  position: absolute;
+  top: 50%;
+  right: var(--space-4);
+  transform: translateY(-50%);
+  padding: 0.35rem 0.75rem;
+  border: 1px solid rgba(15, 76, 138, 0.12);
+  border-radius: var(--radius-full);
+  background: var(--color-white);
+  font-family: var(--font-body);
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--color-text-muted);
+  cursor: pointer;
+  transition:
+    color var(--transition-fast),
+    border-color var(--transition-fast),
+    background var(--transition-fast);
+}
+
+.mockup-expand__close:hover {
+  color: var(--color-primary);
+  border-color: rgba(15, 76, 138, 0.2);
+}
+
+.mockup-expand__close:focus-visible {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 2px;
+}
+
+.mockup-expand__screen {
+  flex: 1;
+  min-height: 0;
+  overflow: auto;
+  overflow-x: hidden;
+  -webkit-overflow-scrolling: touch;
+}
+
+@keyframes mockup-expand-in {
+  from {
+    opacity: 0;
+    transform: translateY(1.25rem);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (max-width: 640px) {
+  .mockup-expand {
+    padding: 0;
+  }
+
+  .mockup-expand__frame {
+    border-radius: 0;
+    border-inline: 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .mockup-expand {
+    animation: none;
+  }
+}

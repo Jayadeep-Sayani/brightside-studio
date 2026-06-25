@@ -5,7 +5,7 @@ export const projects = [
     type: 'Café',
     theme: 'cafe',
     url: 'harborcafe.co',
-    demoPath: '/work/harbor',
+    demoId: 'harbor',
     description:
       'A warm, waterfront café site built around daily menus, hours, and the feeling of morning light on the porch.',
     highlights: ['Split hero layout', 'Menu-first navigation', 'Vintage coastal palette'],

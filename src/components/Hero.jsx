@@ -1,5 +1,8 @@
 import './Hero.css'
 import { CafeMockup, SalonMockup, BistroMockup } from './MockupPreviews'
+import { useMockupExpand } from '../context/MockupExpandContext'
+import { usePageNavigate } from '../hooks/usePageNavigate'
+import { routeHref } from '../utils/paths'
 
 const mockups = [
   {
@@ -10,6 +13,7 @@ const mockups = [
     zIndex: 1,
     theme: 'cafe',
     scale: '1',
+    demoId: 'harbor',
   },
   {
     id: 'drift',
@@ -37,11 +41,10 @@ const mockupComponents = {
   bistro: BistroMockup,
 }
 
-import { usePageNavigate } from '../hooks/usePageNavigate'
-import { routeHref } from '../utils/paths'
-
 function Hero() {
   const pageNavigate = usePageNavigate()
+  const { openDemo } = useMockupExpand()
+
   return (
     <section id="home" className="hero hero-band hero-band--home hero--enter">
       <div className="hero-band__mesh" aria-hidden="true" />
@@ -94,9 +97,10 @@ function Hero() {
         </div>
 
         <div className="hero__visual">
-          <div className="hero__cards" aria-hidden="true">
+          <div className="hero__cards">
             {mockups.map((item) => {
               const Mockup = mockupComponents[item.theme]
+              const mockup = <Mockup name={item.name} type={item.type} />
 
               return (
                 <div
@@ -108,14 +112,27 @@ function Hero() {
                     zIndex: item.zIndex,
                   }}
                 >
-                  <Mockup name={item.name} type={item.type} />
+                  {item.demoId ? (
+                    <button
+                      type="button"
+                      className="hero__mockup-trigger"
+                      onClick={() => openDemo(item.demoId)}
+                      aria-label={`Open ${item.name} mockup preview`}
+                    >
+                      {mockup}
+                    </button>
+                  ) : (
+                    <div className="hero__mockup-static" aria-hidden="true">
+                      {mockup}
+                    </div>
+                  )}
                 </div>
               )
             })}
           </div>
           <p className="hero__mockup-note">
             Snippets from design mockups I&apos;ve created. Sample work, not sold or
-            live client sites.
+            live client sites. Click Harbor Café to explore the full mockup.
           </p>
         </div>
       </div>

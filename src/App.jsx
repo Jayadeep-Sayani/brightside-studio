@@ -5,14 +5,12 @@ import AboutPage from './pages/AboutPage'
 import WorkPage from './pages/WorkPage'
 import PrivacyPage from './pages/PrivacyPage'
 import TermsPage from './pages/TermsPage'
-import HarborCafePage from './pages/HarborCafePage'
 import './components/Layout.css'
 
 function App() {
   return (
     <BrowserRouter basename={import.meta.env.BASE_URL.replace(/\/$/, '')}>
       <Routes>
-        <Route path="work/harbor" element={<HarborCafePage />} />
         <Route element={<Layout />}>
           <Route index element={<HomePage />} />
           <Route path="about" element={<AboutPage />} />

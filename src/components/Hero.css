@@ -267,6 +267,28 @@
   height: 100%;
 }
 
+.hero__mockup-trigger,
+.hero__mockup-static {
+  display: block;
+  width: 100%;
+  height: 100%;
+  padding: 0;
+  border: 0;
+  background: transparent;
+}
+
+.hero__mockup-trigger {
+  cursor: pointer;
+  text-align: inherit;
+  color: inherit;
+  font: inherit;
+}
+
+.hero__mockup-trigger:focus-visible {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 4px;
+}
+
 .hero__card:nth-child(2) {
   transform: rotate(var(--card-rotate, 0deg))
     scale(calc(var(--card-scale, 1) * 1.265)) translateY(-1.25rem);

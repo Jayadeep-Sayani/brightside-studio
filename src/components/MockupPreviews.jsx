@@ -1,7 +1,7 @@
 import './MockupPreviews.css'
 import { assetUrl } from '../utils/paths'
 
-function MockupChrome({ url, variant }) {
+export function MockupChrome({ url, variant }) {
   return (
     <div className={`mockup__browser mockup__browser--${variant}`}>
       <div className="mockup__dots">

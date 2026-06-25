@@ -2,8 +2,8 @@ import './PastWork.css'
 import ScrollReveal from './ScrollReveal'
 import { CafeMockup, SalonMockup, BistroMockup } from './MockupPreviews'
 import { projects } from '../data/projects'
+import { useMockupExpand } from '../context/MockupExpandContext'
 import { usePageNavigate } from '../hooks/usePageNavigate'
-import { routeHref } from '../utils/paths'
 
 const mockupMap = {
   cafe: CafeMockup,
@@ -13,6 +13,7 @@ const mockupMap = {
 
 function PastWork() {
   const pageNavigate = usePageNavigate()
+  const { openDemo } = useMockupExpand()
 
   return (
     <section className="past-work" aria-labelledby="past-work-title">
@@ -50,6 +51,7 @@ function PastWork() {
             {projects.map((project, index) => {
               const Mockup = mockupMap[project.theme]
               const reversed = index % 2 === 1
+              const isExpandable = Boolean(project.demoId)
 
               return (
                 <ScrollReveal
@@ -58,9 +60,20 @@ function PastWork() {
                   delay={80 + index * 80}
                 >
                   <article className="past-work__item">
-                    <div className="past-work__preview">
-                      <Mockup name={project.name} type={project.type} />
-                    </div>
+                    {isExpandable ? (
+                      <button
+                        type="button"
+                        className="past-work__preview past-work__preview--expandable"
+                        onClick={() => openDemo(project.demoId)}
+                        aria-label={`Open ${project.name} mockup preview`}
+                      >
+                        <Mockup name={project.name} type={project.type} />
+                      </button>
+                    ) : (
+                      <div className="past-work__preview">
+                        <Mockup name={project.name} type={project.type} />
+                      </div>
+                    )}
                     <div className="past-work__copy">
                       <p className="past-work__item-type">{project.type}</p>
                       <h2 className="past-work__item-name">{project.name}</h2>
@@ -71,10 +84,8 @@ function PastWork() {
                           <li key={tag}>{tag}</li>
                         ))}
                       </ul>
-                      {project.demoPath && (
-                        <a href={routeHref(project.demoPath)} className="past-work__demo-link">
-                          View full mockup
-                        </a>
+                      {isExpandable && (
+                        <p className="past-work__demo-hint">Click the preview to explore the full mockup</p>
                       )}
                     </div>
                   </article>
