@@ -66,9 +66,30 @@
     transform var(--transition-base);
 }
 
-.past-work__preview:hover {
+.past-work__preview:hover,
+.past-work__preview--link:hover {
   box-shadow: var(--shadow-lg);
   transform: translateY(-4px);
+}
+
+.past-work__preview--link {
+  display: block;
+  text-decoration: none;
+  color: inherit;
+  cursor: pointer;
+}
+
+.past-work__demo-link {
+  margin-top: var(--space-4);
+  font-size: var(--text-sm);
+  font-weight: 600;
+  color: var(--color-primary);
+  text-decoration: none;
+}
+
+.past-work__demo-link:hover {
+  text-decoration: underline;
+  text-decoration-color: var(--color-accent);
 }
 
 .past-work__preview .site-preview {

@@ -3,6 +3,7 @@ import ScrollReveal from './ScrollReveal'
 import { CafeMockup, SalonMockup, BistroMockup } from './MockupPreviews'
 import { projects } from '../data/projects'
 import { usePageNavigate } from '../hooks/usePageNavigate'
+import { routeHref } from '../utils/paths'
 
 const mockupMap = {
   cafe: CafeMockup,
@@ -57,9 +58,23 @@ function PastWork() {
                   delay={80 + index * 80}
                 >
                   <article className="past-work__item">
-                    <div className="past-work__preview">
-                      <Mockup name={project.name} type={project.type} />
-                    </div>
+                    {project.demoPath ? (
+                      <a
+                        href={routeHref(project.demoPath)}
+                        className="past-work__preview past-work__preview--link"
+                        aria-label={`View full ${project.name} mockup`}
+                        onClick={(event) => {
+                          event.preventDefault()
+                          pageNavigate(project.demoPath)
+                        }}
+                      >
+                        <Mockup name={project.name} type={project.type} />
+                      </a>
+                    ) : (
+                      <div className="past-work__preview">
+                        <Mockup name={project.name} type={project.type} />
+                      </div>
+                    )}
                     <div className="past-work__copy">
                       <p className="past-work__item-type">{project.type}</p>
                       <h2 className="past-work__item-name">{project.name}</h2>
@@ -70,6 +85,18 @@ function PastWork() {
                           <li key={tag}>{tag}</li>
                         ))}
                       </ul>
+                      {project.demoPath ? (
+                        <a
+                          href={routeHref(project.demoPath)}
+                          className="past-work__demo-link"
+                          onClick={(event) => {
+                            event.preventDefault()
+                            pageNavigate(project.demoPath)
+                          }}
+                        >
+                          View full mockup →
+                        </a>
+                      ) : null}
                     </div>
                   </article>
                 </ScrollReveal>

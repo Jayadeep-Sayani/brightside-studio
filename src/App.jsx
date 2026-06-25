@@ -5,12 +5,14 @@ import AboutPage from './pages/AboutPage'
 import WorkPage from './pages/WorkPage'
 import PrivacyPage from './pages/PrivacyPage'
 import TermsPage from './pages/TermsPage'
+import LumenSalonPage from './pages/mockups/LumenSalonPage'
 import './components/Layout.css'
 
 function App() {
   return (
     <BrowserRouter basename={import.meta.env.BASE_URL.replace(/\/$/, '')}>
       <Routes>
+        <Route path="mockups/lumen" element={<LumenSalonPage />} />
         <Route element={<Layout />}>
           <Route index element={<HomePage />} />
           <Route path="about" element={<AboutPage />} />

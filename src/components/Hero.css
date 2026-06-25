@@ -251,6 +251,12 @@
   -webkit-user-select: none;
 }
 
+.hero__card--link {
+  text-decoration: none;
+  color: inherit;
+  cursor: pointer;
+}
+
 .hero__card {
   position: relative;
   display: flex;
