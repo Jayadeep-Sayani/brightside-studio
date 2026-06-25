@@ -1,4 +1,6 @@
 .mockup-demo {
+  --mockup-chrome-height: 3.25rem;
+
   min-height: 100vh;
   background: #fdf8f6;
 }
