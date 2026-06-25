@@ -251,14 +251,19 @@ function HarborCafeSite() {
                   <br />
                   Waterfront District
                 </p>
-                <div className="harbor-visit__map">
-                  <iframe
-                    title="Map showing Harbor Café on the waterfront"
-                    src="https://www.openstreetmap.org/export/embed.html?bbox=-122.4188%2C37.8070%2C-122.4088%2C37.8120&layer=mapnik&marker=37.8095%2C-122.4138"
+                <a
+                  className="harbor-visit__map"
+                  href="https://www.openstreetmap.org/#map=16/37.8095/-122.4138"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label="Open Harbor Café location in OpenStreetMap"
+                >
+                  <img
+                    src={assetUrl('/harbor/map.jpg')}
+                    alt="Map showing Harbor Café on the waterfront"
                     loading="lazy"
-                    referrerPolicy="no-referrer-when-downgrade"
                   />
-                </div>
+                </a>
                 <p className="harbor-visit__note">
                   Street parking along the harbor walk. Patio seats fill quickly on
                   sunny weekends.

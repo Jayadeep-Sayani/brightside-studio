@@ -9,6 +9,7 @@
 
 html {
   overflow-x: hidden;
+  overflow-y: auto;
   scroll-behavior: smooth;
   scroll-padding-top: var(--navbar-height);
 }
@@ -67,7 +68,6 @@ body {
   line-height: var(--leading-normal);
   color: var(--color-text);
   background: var(--color-background);
-  overflow-x: hidden;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
