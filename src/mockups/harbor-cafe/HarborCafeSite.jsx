@@ -6,16 +6,49 @@ const menuItems = [
     name: 'Harbor Latte',
     note: 'Espresso, steamed milk, touch of vanilla',
     price: '$5.50',
+    image: '/harbor/menu-latte.jpg',
+    alt: 'Steamed latte in a ceramic cup',
   },
   {
     name: 'Cinnamon Morning Bun',
     note: 'Baked before sunrise, cream cheese glaze',
     price: '$4.25',
+    image: '/harbor/menu-bun.jpg',
+    alt: 'Fresh cinnamon roll with icing',
   },
   {
     name: 'Bay Shore Avocado Toast',
     note: 'Sourdough, herbs, chili flakes, soft egg',
     price: '$12.00',
+    image: '/harbor/menu-toast.jpg',
+    alt: 'Avocado toast on sourdough with herbs',
+  },
+]
+
+const galleryImages = [
+  {
+    src: '/harbor/gallery-pour.jpg',
+    alt: 'Barista pouring steamed milk into espresso',
+    caption: 'Poured to order',
+    layout: 'tall',
+  },
+  {
+    src: '/harbor/gallery-pastries.jpg',
+    alt: 'Pastry case filled with morning bakes',
+    caption: 'From the oven at dawn',
+    layout: 'wide',
+  },
+  {
+    src: '/harbor/gallery-porch.jpg',
+    alt: 'Outdoor café seating with morning light',
+    caption: 'Porch facing the bay',
+    layout: 'square',
+  },
+  {
+    src: '/harbor/gallery-table.jpg',
+    alt: 'Coffee and pastry on a wooden café table',
+    caption: 'A table for two',
+    layout: 'square',
   },
 ]
 
@@ -35,6 +68,7 @@ function HarborCafeSite() {
           </a>
           <nav className="harbor-site__nav" aria-label="Harbor Café">
             <a href="#menu">Menu</a>
+            <a href="#gallery">Gallery</a>
             <a href="#visit">Hours</a>
             <a href="#story">Our Story</a>
           </nav>
@@ -102,44 +136,83 @@ function HarborCafeSite() {
               </p>
             </header>
 
-            <ul className="harbor-menu__list">
-              {menuItems.map((item, index) => (
-                <li key={item.name} className="harbor-menu__item">
-                  <span className="harbor-menu__index">
-                    {String(index + 1).padStart(2, '0')}
-                  </span>
-                  <div className="harbor-menu__details">
-                    <h3>{item.name}</h3>
+            <ul className="harbor-menu__grid">
+              {menuItems.map((item) => (
+                <li key={item.name} className="harbor-menu__card">
+                  <div className="harbor-menu__thumb">
+                    <img src={assetUrl(item.image)} alt={item.alt} loading="lazy" />
+                  </div>
+                  <div className="harbor-menu__body">
+                    <div className="harbor-menu__top">
+                      <h3>{item.name}</h3>
+                      <span className="harbor-menu__price">{item.price}</span>
+                    </div>
                     <p>{item.note}</p>
                   </div>
-                  <span className="harbor-menu__price">{item.price}</span>
                 </li>
               ))}
             </ul>
           </div>
         </section>
 
+        <section id="gallery" className="harbor-section harbor-gallery">
+          <div className="harbor-gallery__inner">
+            <header className="harbor-section-head harbor-section-head--center">
+              <p className="harbor-section-head__eyebrow">Inside the café</p>
+              <h2 className="harbor-section-head__title">Moments from the harbor</h2>
+              <p className="harbor-section-head__lead">
+                Warm light, fresh bakes, and the quiet hum of a morning by the water.
+              </p>
+            </header>
+
+            <div className="harbor-gallery__grid">
+              {galleryImages.map((item) => (
+                <figure
+                  key={item.src}
+                  className={`harbor-gallery__item harbor-gallery__item--${item.layout}`}
+                >
+                  <div className="harbor-gallery__frame">
+                    <img src={assetUrl(item.src)} alt={item.alt} loading="lazy" />
+                  </div>
+                  <figcaption>{item.caption}</figcaption>
+                </figure>
+              ))}
+            </div>
+          </div>
+        </section>
+
         <section id="story" className="harbor-section harbor-story">
           <div className="harbor-story__inner">
-            <blockquote className="harbor-story__quote">
-              <p>
-                We opened Harbor Café for the quiet hour before the city wakes,
-                when the bay is still and the room smells like fresh grounds.
-              </p>
-            </blockquote>
-            <div className="harbor-story__copy">
-              <p className="harbor-section-head__eyebrow">Our story</p>
-              <h2 className="harbor-section-head__title">Built for slow mornings</h2>
-              <p>
-                Every cup is roasted in small batches and every loaf is mixed by
-                hand before dawn. We wanted a space that felt like the porch at
-                your favorite house: warm wood, worn books, and nowhere you need
-                to be right away.
-              </p>
-              <p>
-                Whether you are meeting a friend, reading before work, or
-                lingering over one more cup, we are glad you found your way here.
-              </p>
+            <div className="harbor-story__media">
+              <img
+                src={assetUrl('/harbor/gallery-table.jpg')}
+                alt="Coffee and pastry on a wooden table"
+                className="harbor-story__photo"
+                loading="lazy"
+              />
+              <p className="harbor-story__photo-caption">Where mornings linger</p>
+            </div>
+            <div className="harbor-story__content">
+              <blockquote className="harbor-story__quote">
+                <p>
+                  We opened Harbor Café for the quiet hour before the city wakes,
+                  when the bay is still and the room smells like fresh grounds.
+                </p>
+              </blockquote>
+              <div className="harbor-story__copy">
+                <p className="harbor-section-head__eyebrow">Our story</p>
+                <h2 className="harbor-section-head__title">Built for slow mornings</h2>
+                <p>
+                  Every cup is roasted in small batches and every loaf is mixed by
+                  hand before dawn. We wanted a space that felt like the porch at
+                  your favorite house: warm wood, worn books, and nowhere you need
+                  to be right away.
+                </p>
+                <p>
+                  Whether you are meeting a friend, reading before work, or
+                  lingering over one more cup, we are glad you found your way here.
+                </p>
+              </div>
             </div>
           </div>
         </section>
@@ -160,6 +233,13 @@ function HarborCafeSite() {
             </div>
 
             <div className="harbor-visit__card harbor-visit__card--location">
+              <div className="harbor-visit__location-visual">
+                <img
+                  src={assetUrl('/harbor/gallery-porch.jpg')}
+                  alt="Waterfront porch seating at the café"
+                  loading="lazy"
+                />
+              </div>
               <p className="harbor-section-head__eyebrow">Find us</p>
               <h2 className="harbor-visit__title">On the waterfront</h2>
               <p className="harbor-visit__address">
