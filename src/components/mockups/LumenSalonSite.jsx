@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import './LumenSalonSite.css'
 import { assetUrl } from '../../utils/paths'
 
@@ -62,31 +62,46 @@ const hours = [
   { day: 'Sunday – Monday', time: 'Closed' },
 ]
 
+const navLinks = [
+  { href: '#services', label: 'Services' },
+  { href: '#team', label: 'Team' },
+  { href: '#gallery', label: 'Gallery' },
+  { href: '#book', label: 'Book' },
+  { href: '#visit', label: 'Visit' },
+]
+
 function LumenSalonSite() {
-  const [headerSolid, setHeaderSolid] = useState(false)
+  const heroEndRef = useRef(null)
+  const [dockVisible, setDockVisible] = useState(false)
 
   useEffect(() => {
-    const onScroll = () => {
-      setHeaderSolid(window.scrollY > 64)
-    }
+    window.scrollTo({ top: 0, left: 0, behavior: 'instant' })
 
-    onScroll()
-    window.addEventListener('scroll', onScroll, { passive: true })
-    return () => window.removeEventListener('scroll', onScroll)
+    const sentinel = heroEndRef.current
+    if (!sentinel) return undefined
+
+    const observer = new IntersectionObserver(
+      ([entry]) => setDockVisible(!entry.isIntersecting),
+      { threshold: 0 },
+    )
+
+    observer.observe(sentinel)
+    return () => observer.disconnect()
   }, [])
 
   return (
     <div className="lumen-site">
       <header
-        className={`lumen-site__header${headerSolid ? ' lumen-site__header--solid' : ''}`}
+        className={`lumen-site__dock${dockVisible ? ' lumen-site__dock--visible' : ''}`}
+        aria-hidden={!dockVisible}
       >
         <span className="lumen-site__logo">LUMEN</span>
         <nav className="lumen-site__nav" aria-label="Lumen Salon">
-          <a href="#services">Services</a>
-          <a href="#team">Team</a>
-          <a href="#gallery">Gallery</a>
-          <a href="#book">Book</a>
-          <a href="#visit">Visit</a>
+          {navLinks.map((link) => (
+            <a key={link.href} href={link.href}>
+              {link.label}
+            </a>
+          ))}
         </nav>
         <a href="#book" className="lumen-site__nav-cta">
           Book now
@@ -97,29 +112,55 @@ function LumenSalonSite() {
         <div className="lumen-site__hero-media" aria-hidden="true">
           <img src={assetUrl('/NailSalon.jpeg')} alt="" draggable={false} />
         </div>
-        <div className="lumen-site__hero-inner">
-          <div className="lumen-site__hero-content">
-            <p className="lumen-site__eyebrow">Hair · Skin · Nails</p>
-            <h1 className="lumen-site__headline">
-              Illuminate your
-              <br />
-              everyday glow
-            </h1>
-            <p className="lumen-site__lead">
-              A calm, elevated salon in James Bay for cuts, facials, and nails that
-              feel as good as they look.
-            </p>
-            <div className="lumen-site__hero-actions">
-              <a href="#book" className="lumen-site__btn lumen-site__btn--primary">
-                Book appointment
+
+        <header className="lumen-site__hero-nav">
+          <span className="lumen-site__logo">LUMEN</span>
+          <nav className="lumen-site__nav" aria-label="Lumen Salon hero">
+            {navLinks.slice(0, 4).map((link) => (
+              <a key={link.href} href={link.href}>
+                {link.label}
               </a>
-              <a href="#services" className="lumen-site__btn lumen-site__btn--ghost">
-                View services
-              </a>
+            ))}
+          </nav>
+          <a href="#book" className="lumen-site__nav-cta lumen-site__nav-cta--compact">
+            Book
+          </a>
+        </header>
+
+        <div className="lumen-site__hero-body">
+          <p className="lumen-site__eyebrow">Hair · Skin · Nails</p>
+          <h1 className="lumen-site__headline">
+            Illuminate your
+            <br />
+            everyday glow
+          </h1>
+          <p className="lumen-site__lead">
+            A calm, elevated salon in James Bay for cuts, facials, and nails that feel
+            as good as they look.
+          </p>
+          <div className="lumen-site__booking-pill">
+            <div className="lumen-site__slots" aria-label="Available times today">
+              {timeSlots.map((slot) => (
+                <span
+                  key={slot}
+                  className={
+                    slot === '2:30'
+                      ? 'lumen-site__slot lumen-site__slot--active'
+                      : 'lumen-site__slot'
+                  }
+                >
+                  {slot}
+                </span>
+              ))}
             </div>
+            <a href="#book" className="lumen-site__btn lumen-site__btn--book">
+              Book appointment
+            </a>
           </div>
         </div>
       </section>
+
+      <div ref={heroEndRef} className="lumen-site__hero-sentinel" aria-hidden="true" />
 
       <section className="lumen-site__promo" aria-label="New client offer">
         <div className="lumen-site__section-inner lumen-site__promo-inner">
@@ -210,12 +251,11 @@ function LumenSalonSite() {
           </div>
           <div className="lumen-site__book-panel">
             <p className="lumen-site__book-date">Tuesday, June 24</p>
-            <div className="lumen-site__slots" role="list" aria-label="Available times">
+            <div className="lumen-site__slots lumen-site__slots--panel" aria-label="Available times">
               {timeSlots.map((slot) => (
                 <button
                   key={slot}
                   type="button"
-                  role="listitem"
                   className={
                     slot === '2:30'
                       ? 'lumen-site__slot lumen-site__slot--active'
@@ -282,10 +322,11 @@ function LumenSalonSite() {
             <p>Open Tue–Sat · 9am–6pm</p>
           </div>
           <div className="lumen-site__footer-links">
-            <a href="#services">Services</a>
-            <a href="#team">Team</a>
-            <a href="#book">Book</a>
-            <a href="#visit">Visit</a>
+            {navLinks.map((link) => (
+              <a key={link.href} href={link.href}>
+                {link.label}
+              </a>
+            ))}
           </div>
         </div>
       </footer>

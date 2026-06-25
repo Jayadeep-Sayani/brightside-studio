@@ -3,6 +3,7 @@
 
   min-height: 100vh;
   background: #fdf8f6;
+  scroll-padding-top: 0;
 }
 
 .mockup-demo__chrome {

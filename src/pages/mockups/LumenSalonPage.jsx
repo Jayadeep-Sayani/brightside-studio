@@ -1,3 +1,4 @@
+import { useEffect } from 'react'
 import LumenSalonSite from '../../components/mockups/LumenSalonSite'
 import { usePageNavigate } from '../../hooks/usePageNavigate'
 import { routeHref } from '../../utils/paths'
@@ -5,6 +6,11 @@ import './LumenSalonPage.css'
 
 function LumenSalonPage() {
   const pageNavigate = usePageNavigate()
+
+  useEffect(() => {
+    window.scrollTo({ top: 0, left: 0, behavior: 'instant' })
+    requestAnimationFrame(() => window.scrollTo(0, 0))
+  }, [])
 
   return (
     <div className="mockup-demo">
