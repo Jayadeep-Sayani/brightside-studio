@@ -135,7 +135,7 @@
 }
 
 .harbor-hero__title {
-  margin: 0 0 1.85rem;
+  margin: 0 0 1.15rem;
   font-size: clamp(2.35rem, 5.5vw, 3.75rem);
   font-weight: 600;
   letter-spacing: 0.03em;
@@ -154,6 +154,7 @@
 .harbor-hero__lead {
   max-width: 28rem;
   margin: 0;
+  padding-top: 0.15rem;
   font-size: 1.05rem;
   font-style: italic;
   line-height: 1.6;
@@ -165,7 +166,7 @@
   flex-wrap: wrap;
   align-items: center;
   gap: 1rem;
-  margin-top: 3.5rem;
+  margin-top: 1rem;
 }
 
 .harbor-hero__actions .harbor-btn {
@@ -721,7 +722,7 @@
   }
 
   .harbor-hero__title {
-    margin-bottom: 1.5rem;
+    margin-bottom: 1rem;
   }
 
   .harbor-hero__title span {
@@ -733,7 +734,7 @@
   }
 
   .harbor-hero__actions {
-    margin-top: 2.75rem;
+    margin-top: 0.85rem;
     width: 100%;
   }
 
