@@ -28,8 +28,6 @@ const hours = [
 function HarborCafeSite() {
   return (
     <div className="harbor-site">
-      <div className="harbor-site__grain" aria-hidden="true" />
-
       <header className="harbor-site__header">
         <div className="harbor-site__header-inner">
           <a href="#top" className="harbor-site__logo">
@@ -37,11 +35,8 @@ function HarborCafeSite() {
           </a>
           <nav className="harbor-site__nav" aria-label="Harbor Café">
             <a href="#menu">Menu</a>
+            <a href="#visit">Hours</a>
             <a href="#story">Our Story</a>
-            <a href="#visit">Visit</a>
-            <a href="#visit" className="harbor-site__nav-cta">
-              Order Pickup
-            </a>
           </nav>
         </div>
       </header>
@@ -71,9 +66,12 @@ function HarborCafeSite() {
           <div className="harbor-hero__visual">
             <div className="harbor-hero__frame">
               <img
-                src={assetUrl('/CafeInterior.jpg')}
+                src={assetUrl('/HarborCafeHero.jpg')}
                 alt="Warm harbor café interior with morning light"
                 className="harbor-hero__photo"
+                width={1600}
+                height={1097}
+                decoding="async"
               />
             </div>
             <p className="harbor-hero__caption">Open from first light</p>
@@ -93,7 +91,7 @@ function HarborCafeSite() {
           </div>
         </div>
 
-        <section id="menu" className="harbor-menu">
+        <section id="menu" className="harbor-section harbor-menu">
           <div className="harbor-menu__inner">
             <header className="harbor-section-head">
               <p className="harbor-section-head__eyebrow">Today at the café</p>
@@ -121,7 +119,7 @@ function HarborCafeSite() {
           </div>
         </section>
 
-        <section id="story" className="harbor-story">
+        <section id="story" className="harbor-section harbor-story">
           <div className="harbor-story__inner">
             <blockquote className="harbor-story__quote">
               <p>
@@ -140,14 +138,13 @@ function HarborCafeSite() {
               </p>
               <p>
                 Whether you are meeting a friend, reading before work, or
-                picking up something sweet for the walk home, we are glad you
-                found your way here.
+                lingering over one more cup, we are glad you found your way here.
               </p>
             </div>
           </div>
         </section>
 
-        <section id="visit" className="harbor-visit">
+        <section id="visit" className="harbor-section harbor-visit">
           <div className="harbor-visit__inner">
             <div className="harbor-visit__card harbor-visit__card--hours">
               <p className="harbor-section-head__eyebrow">Hours</p>
@@ -174,9 +171,6 @@ function HarborCafeSite() {
                 Street parking along the harbor walk. Patio seats fill quickly on
                 sunny weekends.
               </p>
-              <a href="#top" className="harbor-btn harbor-btn--primary">
-                Order for Pickup
-              </a>
             </div>
           </div>
         </section>
