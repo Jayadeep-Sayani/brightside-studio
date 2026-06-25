@@ -219,14 +219,6 @@ function HarborCafeSite() {
 
         <section id="visit" className="harbor-section harbor-visit">
           <div className="harbor-visit__inner">
-            <div className="harbor-visit__banner">
-              <img
-                src={assetUrl('/harbor/gallery-porch.jpg')}
-                alt="Waterfront porch seating at the café"
-                loading="lazy"
-              />
-            </div>
-
             <div className="harbor-visit__card harbor-visit__card--hours">
               <p className="harbor-section-head__eyebrow">Hours</p>
               <h2 className="harbor-visit__title">When we&apos;re open</h2>
