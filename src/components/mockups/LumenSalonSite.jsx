@@ -32,26 +32,38 @@ const testimonials = [
       'The space feels calm the second you walk in. Booking online took thirty seconds and my color turned out exactly how I described it.',
     name: 'Elena R.',
     detail: 'Balayage client',
+    featured: true,
   },
   {
     quote:
       'I come for the facials and stay for the team. Everyone remembers your preferences without making it feel over the top.',
     name: 'Sam K.',
     detail: 'Monthly facial',
+    featured: false,
   },
   {
     quote:
-      'Best gel manicure I have had in Victoria. Clean lines, no rush, and the chairs are unbelievably comfortable.',
+      'Best gel manicure I have had in Victoria. Clean lines, no rush, and unbelievably comfortable chairs.',
     name: 'Priya M.',
     detail: 'Gel manicure',
+    featured: false,
   },
 ]
 
 const galleryItems = [
-  { label: 'Soft layers', tone: 'warm', tall: true },
-  { label: 'Glow facial', tone: 'blush', tall: false },
-  { label: 'Neutral gel', tone: 'rose', tall: false },
-  { label: 'Evening event', tone: 'mauve', tall: true },
+  { label: 'Soft layers', position: 'center 18%' },
+  { label: 'Glow facial', position: '70% 35%' },
+  { label: 'Neutral gel', position: '30% 60%' },
+  { label: 'Evening event', position: 'center 42%' },
+]
+
+const marqueeWords = [
+  'Balayage',
+  'Gel sets',
+  'Express facials',
+  'Brow design',
+  'Scalp massage',
+  'Event styling',
 ]
 
 const timeSlots = ['10:00', '11:30', '2:30', '4:15', '5:45']
@@ -119,8 +131,13 @@ function LumenSalonSite() {
     setBookingConfirmed(true)
   }
 
+  const featuredReview = testimonials.find((item) => item.featured)
+  const otherReviews = testimonials.filter((item) => !item.featured)
+
   return (
     <div className="lumen-site">
+      <div className="lumen-site__grain" aria-hidden="true" />
+
       <header
         className={`lumen-site__header${navSolid ? ' lumen-site__header--solid' : ''}`}
       >
@@ -147,39 +164,74 @@ function LumenSalonSite() {
             decoding="async"
           />
         </div>
+        <div className="lumen-site__hero-blob" aria-hidden="true" />
 
-        <div className="lumen-site__hero-body">
-          <p className="lumen-site__eyebrow">Hair · Skin · Nails · James Bay</p>
-          <h1 className="lumen-site__headline">
-            Illuminate your
-            <br />
-            everyday glow
-          </h1>
-          <p className="lumen-site__lead">
-            A calm, elevated salon for cuts, facials, and nails — soft light, warm
-            textures, and stylists who listen before they recommend.
-          </p>
-          <div className="lumen-site__booking-pill">
-            <div className="lumen-site__slots" role="group" aria-label="Available times today">
-              {timeSlots.map((slot) => (
-                <button
-                  key={slot}
-                  type="button"
-                  className={
-                    slot === selectedSlot
-                      ? 'lumen-site__slot lumen-site__slot--active'
-                      : 'lumen-site__slot'
-                  }
-                  aria-pressed={slot === selectedSlot}
-                  onClick={() => selectSlot(slot)}
-                >
-                  {slot}
-                </button>
-              ))}
+        <div className="lumen-site__hero-layout">
+          <div className="lumen-site__hero-body">
+            <p className="lumen-site__eyebrow">Hair · Skin · Nails · James Bay</p>
+            <h1 className="lumen-site__headline">
+              Illuminate your
+              <br />
+              <em>everyday glow</em>
+            </h1>
+            <p className="lumen-site__lead">
+              A calm, elevated salon for cuts, facials, and nails. Soft light, warm
+              textures, and stylists who listen before they recommend.
+            </p>
+            <div className="lumen-site__booking-pill">
+              <div className="lumen-site__slots" role="group" aria-label="Available times today">
+                {timeSlots.map((slot) => (
+                  <button
+                    key={slot}
+                    type="button"
+                    className={
+                      slot === selectedSlot
+                        ? 'lumen-site__slot lumen-site__slot--active'
+                        : 'lumen-site__slot'
+                    }
+                    aria-pressed={slot === selectedSlot}
+                    onClick={() => selectSlot(slot)}
+                  >
+                    {slot}
+                  </button>
+                ))}
+              </div>
+              <a href="#book" className="lumen-site__btn lumen-site__btn--book">
+                Book {selectedSlot}
+              </a>
             </div>
-            <a href="#book" className="lumen-site__btn lumen-site__btn--book">
-              Book {selectedSlot}
-            </a>
+          </div>
+        </div>
+      </section>
+
+      <div className="lumen-site__marquee" aria-hidden="true">
+        <div className="lumen-site__marquee-track">
+          {[...marqueeWords, ...marqueeWords].map((word, index) => (
+            <span key={`${word}-${index}`}>{word}</span>
+          ))}
+        </div>
+      </div>
+
+      <section className="lumen-site__editorial">
+        <div className="lumen-site__section-inner lumen-site__editorial-inner">
+          <div className="lumen-site__editorial-visual">
+            <img src={assetUrl('/NailSalon.jpeg')} alt="" draggable={false} />
+            <div className="lumen-site__editorial-frame" aria-hidden="true" />
+          </div>
+          <div className="lumen-site__editorial-copy">
+            <p className="lumen-site__section-label">The salon</p>
+            <h2 className="lumen-site__section-title">
+              Light-filled, unhurried, and quietly luxurious
+            </h2>
+            <p>
+              Lumen was designed to feel soft and intentional from the moment you walk
+              in — natural textures, warm light, and a team that treats every appointment
+              like a small reset.
+            </p>
+            <p>
+              Whether you are in for a quick refresh or a slow afternoon of care, we keep
+              the experience calm, personal, and beautifully considered.
+            </p>
           </div>
         </div>
       </section>
@@ -203,6 +255,7 @@ function LumenSalonSite() {
 
       <section className="lumen-site__promo" aria-label="New client offer">
         <div className="lumen-site__section-inner lumen-site__promo-inner">
+          <div className="lumen-site__promo-ring" aria-hidden="true" />
           <p className="lumen-site__promo-label">New client offer</p>
           <p className="lumen-site__promo-title">The Glow Welcome — $99</p>
           <p className="lumen-site__promo-copy">
@@ -213,17 +266,22 @@ function LumenSalonSite() {
 
       <section className="lumen-site__services" id="services">
         <div className="lumen-site__section-inner">
-          <header className="lumen-site__section-header">
+          <header className="lumen-site__section-header lumen-site__section-header--left">
             <p className="lumen-site__section-label">Services</p>
             <h2 className="lumen-site__section-title">Treatments tailored to you</h2>
-            <p className="lumen-site__section-intro lumen-site__section-intro--centered">
+            <p className="lumen-site__section-intro">
               Every visit starts with a short consultation so your stylist understands your
               hair, skin, and schedule before recommending a plan.
             </p>
           </header>
           <div className="lumen-site__service-grid">
             {services.map((group, index) => (
-              <article key={group.name} className="lumen-site__service-card">
+              <article
+                key={group.name}
+                className={`lumen-site__service-card${
+                  index === 0 ? ' lumen-site__service-card--feature' : ''
+                }`}
+              >
                 <span className="lumen-site__service-index" aria-hidden="true">
                   {String(index + 1).padStart(2, '0')}
                 </span>
@@ -243,15 +301,25 @@ function LumenSalonSite() {
         </div>
       </section>
 
+      <section className="lumen-site__pullquote" aria-hidden="true">
+        <blockquote>
+          <p>Beauty should feel calm, not complicated.</p>
+        </blockquote>
+      </section>
+
       <section className="lumen-site__team" id="team">
         <div className="lumen-site__section-inner">
-          <header className="lumen-site__section-header">
+          <header className="lumen-site__section-header lumen-site__section-header--left">
             <p className="lumen-site__section-label">Our team</p>
             <h2 className="lumen-site__section-title">Stylists who listen first</h2>
           </header>
           <div className="lumen-site__team-grid">
-            {team.map((member) => (
-              <article key={member.name} className="lumen-site__team-card">
+            {team.map((member, index) => (
+              <article
+                key={member.name}
+                className="lumen-site__team-card"
+                style={{ '--team-accent': index === 1 ? '#c9958d' : '#ae7081' }}
+              >
                 <div className="lumen-site__team-avatar" aria-hidden="true">
                   <span>{member.name.charAt(0)}</span>
                 </div>
@@ -271,13 +339,19 @@ function LumenSalonSite() {
             <h2 className="lumen-site__section-title">Recent looks from the chair</h2>
           </header>
           <div className="lumen-site__gallery-grid">
-            {galleryItems.map((item) => (
+            {galleryItems.map((item, index) => (
               <figure
                 key={item.label}
-                className={`lumen-site__gallery-item lumen-site__gallery-item--${item.tone}${
-                  item.tall ? ' lumen-site__gallery-item--tall' : ''
+                className={`lumen-site__gallery-item${
+                  index === 0 || index === 3 ? ' lumen-site__gallery-item--tall' : ''
                 }`}
               >
+                <img
+                  src={assetUrl('/NailSalon.jpeg')}
+                  alt=""
+                  draggable={false}
+                  style={{ objectPosition: item.position }}
+                />
                 <figcaption>{item.label}</figcaption>
               </figure>
             ))}
@@ -300,13 +374,13 @@ function LumenSalonSite() {
             {bookingConfirmed ? (
               <div className="lumen-site__booking-success" role="status">
                 <p className="lumen-site__booking-success-eyebrow">Confirmed</p>
-                <h3 className="lumen-site__booking-success-title">You are booked, {clientName.split(' ')[0]}.</h3>
+                <h3 className="lumen-site__booking-success-title">
+                  You are booked, {clientName.split(' ')[0]}.
+                </h3>
                 <p>
                   {selectedService} · Tuesday, June 24 at {selectedSlot}
                 </p>
-                <p>
-                  A confirmation text is on its way to {clientPhone}.
-                </p>
+                <p>A confirmation text is on its way to {clientPhone}.</p>
                 <button
                   type="button"
                   className="lumen-site__btn lumen-site__btn--ghost-panel"
@@ -403,20 +477,31 @@ function LumenSalonSite() {
 
       <section className="lumen-site__testimonials" aria-label="Client reviews">
         <div className="lumen-site__section-inner">
-          <header className="lumen-site__section-header">
+          <header className="lumen-site__section-header lumen-site__section-header--left">
             <p className="lumen-site__section-label">Reviews</p>
             <h2 className="lumen-site__section-title">Loved by our regulars</h2>
           </header>
-          <div className="lumen-site__testimonial-grid">
-            {testimonials.map((item) => (
-              <blockquote key={item.name} className="lumen-site__testimonial-card">
-                <p>&ldquo;{item.quote}&rdquo;</p>
+          <div className="lumen-site__testimonial-layout">
+            {featuredReview ? (
+              <blockquote className="lumen-site__testimonial-card lumen-site__testimonial-card--feature">
+                <p>&ldquo;{featuredReview.quote}&rdquo;</p>
                 <footer>
-                  <cite>{item.name}</cite>
-                  <span>{item.detail}</span>
+                  <cite>{featuredReview.name}</cite>
+                  <span>{featuredReview.detail}</span>
                 </footer>
               </blockquote>
-            ))}
+            ) : null}
+            <div className="lumen-site__testimonial-stack">
+              {otherReviews.map((item) => (
+                <blockquote key={item.name} className="lumen-site__testimonial-card">
+                  <p>&ldquo;{item.quote}&rdquo;</p>
+                  <footer>
+                    <cite>{item.name}</cite>
+                    <span>{item.detail}</span>
+                  </footer>
+                </blockquote>
+              ))}
+            </div>
           </div>
         </div>
       </section>
