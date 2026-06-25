@@ -26,6 +26,7 @@ export const projects = [
     type: 'Salon & booking',
     theme: 'salon',
     url: 'lumensalon.com',
+    demoId: 'lumen',
     description:
       'A booking-focused salon site with service categories, available time slots, and a calm, elevated aesthetic.',
     highlights: ['Inline booking slots', 'Service categories', 'Clean beauty branding'],

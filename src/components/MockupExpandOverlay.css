@@ -85,6 +85,10 @@
   background: #faf6f0;
 }
 
+.mockup-expand__frame--salon {
+  background: #fdf8f6;
+}
+
 .mockup-expand__screen {
   flex: 1;
   min-height: 0;

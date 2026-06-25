@@ -32,6 +32,7 @@ const mockups = [
     zIndex: 2,
     theme: 'salon',
     scale: '1',
+    demoId: 'lumen',
   },
 ]
 
@@ -132,7 +133,7 @@ function Hero() {
           </div>
           <p className="hero__mockup-note">
             Snippets from design mockups I&apos;ve created. Sample work, not sold or
-            live client sites. Click Harbor Café to explore the full mockup.
+            live client sites. Click Harbor Café or Lumen Salon to explore a full mockup.
           </p>
         </div>
       </div>

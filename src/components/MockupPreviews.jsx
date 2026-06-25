@@ -77,7 +77,7 @@ export function SalonMockup({ name, type }) {
             <div className="site-preview__visual site-preview__visual--salon" aria-hidden="true">
               <img
                 className="site-preview__photo"
-                src={assetUrl('/NailSalon.jpeg')}
+                src={assetUrl('/lumen/hero.jpg')}
                 alt=""
                 draggable={false}
               />
@@ -87,12 +87,14 @@ export function SalonMockup({ name, type }) {
               <nav className="site-preview__links">
                 <span>Services</span>
                 <span>Book</span>
+                <span>Studio</span>
               </nav>
             </header>
             <div className="site-preview__salon-body">
               <p className="site-preview__eyebrow">Hair · Skin · Nails</p>
               <h2 className="site-preview__headline">
-                Illuminate your<br />everyday glow
+                Illuminate your
+                <span>everyday glow</span>
               </h2>
               <div className="site-preview__booking-row">
                 <div className="site-preview__slots">
