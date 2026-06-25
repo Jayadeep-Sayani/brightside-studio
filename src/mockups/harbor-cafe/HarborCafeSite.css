@@ -104,6 +104,43 @@
   color: var(--hc-primary);
 }
 
+.harbor-site__menu-toggle {
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  gap: 0.3rem;
+  width: 2.5rem;
+  height: 2.5rem;
+  padding: 0;
+  border: 1px solid var(--hc-line);
+  border-radius: 0.65rem;
+  background: var(--hc-cream);
+  cursor: pointer;
+  color: var(--hc-text-strong);
+}
+
+.harbor-site__menu-toggle span {
+  display: block;
+  width: 1rem;
+  height: 1.5px;
+  margin: 0 auto;
+  background: currentColor;
+  border-radius: 999px;
+  transition: transform 0.25s ease, opacity 0.25s ease;
+}
+
+.harbor-site__menu-toggle--open span:nth-child(1) {
+  transform: translateY(0.42rem) rotate(45deg);
+}
+
+.harbor-site__menu-toggle--open span:nth-child(2) {
+  opacity: 0;
+}
+
+.harbor-site__menu-toggle--open span:nth-child(3) {
+  transform: translateY(-0.42rem) rotate(-45deg);
+}
+
 .harbor-hero {
   position: relative;
   z-index: 1;
@@ -760,12 +797,71 @@
   }
 }
 
-@media (max-width: 640px) {
-  .harbor-site__nav {
-    gap: 0.75rem;
-    font-size: 0.62rem;
+@media (max-width: 768px) {
+  .harbor-site__header {
+    position: sticky;
   }
 
+  .harbor-site__menu-toggle {
+    display: flex;
+    z-index: 22;
+  }
+
+  .harbor-site__header-inner {
+    position: static;
+  }
+
+  .harbor-site__nav {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0;
+    max-height: 0;
+    padding: 0 var(--hc-gutter);
+    background: rgba(255, 253, 249, 0.98);
+    border-bottom: 0 solid var(--hc-line);
+    box-shadow: none;
+    overflow: hidden;
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    transition:
+      max-height 0.3s ease,
+      opacity 0.2s ease,
+      padding 0.3s ease,
+      border-bottom-width 0s ease 0.3s;
+  }
+
+  .harbor-site__nav--open {
+    max-height: 18rem;
+    padding: 0.5rem var(--hc-gutter) 1rem;
+    border-bottom-width: 1px;
+    box-shadow: 0 0.75rem 1.5rem rgba(84, 66, 46, 0.08);
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+    transition:
+      max-height 0.3s ease,
+      opacity 0.2s ease,
+      padding 0.3s ease,
+      border-bottom-width 0s ease 0s;
+  }
+
+  .harbor-site__nav a {
+    padding: 0.85rem 0;
+    border-bottom: 1px solid var(--hc-line);
+    font-size: 0.78rem;
+  }
+
+  .harbor-site__nav a:last-child {
+    border-bottom: none;
+  }
+}
+
+@media (max-width: 640px) {
   .harbor-menu__grid {
     grid-template-columns: 1fr;
   }

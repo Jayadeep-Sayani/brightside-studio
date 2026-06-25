@@ -1,6 +1,14 @@
+import { useEffect, useState } from 'react'
 import ScrollReveal from '../../components/ScrollReveal'
 import { assetUrl } from '../../utils/paths'
 import './HarborCafeSite.css'
+
+const navLinks = [
+  { label: 'Menu', href: '#menu' },
+  { label: 'Gallery', href: '#gallery' },
+  { label: 'Hours', href: '#visit' },
+  { label: 'Our Story', href: '#story' },
+]
 
 const menuItems = [
   {
@@ -60,18 +68,59 @@ const hours = [
 ]
 
 function HarborCafeSite() {
+  const [menuOpen, setMenuOpen] = useState(false)
+
+  const closeMenu = () => setMenuOpen(false)
+
+  useEffect(() => {
+    document.body.classList.toggle('menu-open', menuOpen)
+
+    return () => document.body.classList.remove('menu-open')
+  }, [menuOpen])
+
+  useEffect(() => {
+    const onKeyDown = (event) => {
+      if (event.key === 'Escape') {
+        setMenuOpen(false)
+      }
+    }
+
+    window.addEventListener('keydown', onKeyDown)
+
+    return () => window.removeEventListener('keydown', onKeyDown)
+  }, [])
+
   return (
-    <div className="harbor-site">
+    <div className={`harbor-site${menuOpen ? ' harbor-site--menu-open' : ''}`}>
       <header className="harbor-site__header">
         <div className="harbor-site__header-inner">
-          <a href="#top" className="harbor-site__logo">
+          <a href="#top" className="harbor-site__logo" onClick={closeMenu}>
             Harbor Café
           </a>
-          <nav className="harbor-site__nav" aria-label="Harbor Café">
-            <a href="#menu">Menu</a>
-            <a href="#gallery">Gallery</a>
-            <a href="#visit">Hours</a>
-            <a href="#story">Our Story</a>
+
+          <button
+            type="button"
+            className={`harbor-site__menu-toggle${menuOpen ? ' harbor-site__menu-toggle--open' : ''}`}
+            aria-label={menuOpen ? 'Close menu' : 'Open menu'}
+            aria-expanded={menuOpen}
+            aria-controls="harbor-site-nav"
+            onClick={() => setMenuOpen((open) => !open)}
+          >
+            <span />
+            <span />
+            <span />
+          </button>
+
+          <nav
+            id="harbor-site-nav"
+            className={`harbor-site__nav${menuOpen ? ' harbor-site__nav--open' : ''}`}
+            aria-label="Harbor Café"
+          >
+            {navLinks.map((link) => (
+              <a key={link.href} href={link.href} onClick={closeMenu}>
+                {link.label}
+              </a>
+            ))}
           </nav>
         </div>
       </header>
