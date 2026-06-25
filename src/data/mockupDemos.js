@@ -1,5 +1,6 @@
 import HarborCafeSite from '../mockups/harbor-cafe/HarborCafeSite'
 import LumenSalonSite from '../mockups/lumen-salon/LumenSalonSite'
+import DriftBistroSite from '../mockups/drift-bistro/DriftBistroSite'
 
 export const mockupDemos = {
   harbor: {
@@ -7,6 +8,12 @@ export const mockupDemos = {
     variant: 'cafe',
     label: 'Harbor Café',
     Site: HarborCafeSite,
+  },
+  drift: {
+    url: 'driftbistro.com',
+    variant: 'bistro',
+    label: 'Drift Bistro',
+    Site: DriftBistroSite,
   },
   lumen: {
     url: 'lumensalon.com',

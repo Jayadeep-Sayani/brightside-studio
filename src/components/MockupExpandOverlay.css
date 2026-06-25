@@ -89,6 +89,10 @@
   background: #fdf8f6;
 }
 
+.mockup-expand__frame--bistro {
+  background: #1a2332;
+}
+
 .mockup-expand__screen {
   flex: 1;
   min-height: 0;

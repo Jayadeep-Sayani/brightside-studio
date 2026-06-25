@@ -123,7 +123,7 @@ export function BistroMockup({ name, type }) {
             <div className="site-preview__visual site-preview__visual--bistro" aria-hidden="true">
               <img
                 className="site-preview__photo"
-                src={assetUrl('/EveningDining.webp')}
+                src={assetUrl('/drift/hero.jpg')}
                 alt=""
                 draggable={false}
               />

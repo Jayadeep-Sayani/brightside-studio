@@ -23,6 +23,7 @@ const mockups = [
     zIndex: 3,
     theme: 'bistro',
     scale: '1.04',
+    demoId: 'drift',
   },
   {
     id: 'lumen',
@@ -133,7 +134,7 @@ function Hero() {
           </div>
           <p className="hero__mockup-note">
             Snippets from design mockups I&apos;ve created. Sample work, not sold or
-            live client sites. Click Harbor Café or Lumen Salon to explore a full mockup.
+            live client sites. Click any preview to explore a full mockup.
           </p>
         </div>
       </div>

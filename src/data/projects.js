@@ -16,6 +16,7 @@ export const projects = [
     type: 'Restaurant',
     theme: 'bistro',
     url: 'driftbistro.com',
+    demoId: 'drift',
     description:
       'An evening dining experience with full-bleed photography, seasonal menu highlights, and table reservations.',
     highlights: ['Immersive hero imagery', 'Reservation CTA', 'Editorial typography'],
