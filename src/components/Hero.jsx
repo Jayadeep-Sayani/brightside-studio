@@ -30,7 +30,6 @@ const mockups = [
     zIndex: 2,
     theme: 'salon',
     scale: '1',
-    demoPath: '/mockups/lumen',
   },
 ]
 
@@ -94,35 +93,20 @@ function Hero() {
         </div>
 
         <div className="hero__visual">
-          <div className="hero__cards">
+          <div className="hero__cards" aria-hidden="true">
             {mockups.map((item) => {
               const Mockup = mockupComponents[item.theme]
-              const cardStyle = {
-                '--card-rotate': item.rotate,
-                '--card-scale': item.scale,
-                zIndex: item.zIndex,
-              }
-
-              if (item.demoPath) {
-                return (
-                  <a
-                    key={item.id}
-                    href={routeHref(item.demoPath)}
-                    className="hero__card hero__card--link"
-                    style={cardStyle}
-                    aria-label={`View full ${item.name} mockup`}
-                    onClick={(event) => {
-                      event.preventDefault()
-                      pageNavigate(item.demoPath)
-                    }}
-                  >
-                    <Mockup name={item.name} type={item.type} />
-                  </a>
-                )
-              }
 
               return (
-                <div key={item.id} className="hero__card" style={cardStyle} aria-hidden="true">
+                <div
+                  key={item.id}
+                  className="hero__card"
+                  style={{
+                    '--card-rotate': item.rotate,
+                    '--card-scale': item.scale,
+                    zIndex: item.zIndex,
+                  }}
+                >
                   <Mockup name={item.name} type={item.type} />
                 </div>
               )

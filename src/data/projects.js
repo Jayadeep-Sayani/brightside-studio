@@ -28,6 +28,5 @@ export const projects = [
     description:
       'A booking-focused salon site with service categories, available time slots, and a calm, elevated aesthetic.',
     highlights: ['Inline booking slots', 'Service categories', 'Clean beauty branding'],
-    demoPath: '/mockups/lumen',
   },
 ]
