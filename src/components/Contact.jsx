@@ -86,7 +86,7 @@ function Contact() {
               </div>
               <div className="contact__meta-item">
                 <span className="contact__meta-label">Based in</span>
-                <span className="contact__meta-value">Canada</span>
+                <span className="contact__meta-value">Victoria, BC</span>
               </div>
             </div>
           </aside>
