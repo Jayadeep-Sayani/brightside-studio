@@ -115,7 +115,7 @@
 
 @media (min-width: 901px) {
   .mockup-expand__shell {
-    min-height: calc(785px + 3.25rem);
+    min-height: calc(830px + 3.25rem);
     height: min(88vh, 56rem);
   }
 
