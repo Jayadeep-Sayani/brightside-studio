@@ -1,7 +1,7 @@
 import { PACKAGE_LABELS } from '../data/packages'
 
 // FormSubmit delivers to this inbox — no API keys or env vars needed.
-const INBOX_EMAIL = 'jayadeeps1101@gmail.com'
+const INBOX_EMAIL = 'hello@brightside-studio.ca'
 
 export async function submitContactForm(form, { honey = '' } = {}) {
   if (honey) {
