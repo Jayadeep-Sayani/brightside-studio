@@ -4,12 +4,15 @@ import { usePageNavigate } from '../hooks/usePageNavigate'
 import { routeHref } from '../utils/paths'
 import { serviceTiers } from '../data/packages'
 
-function ServiceCard({ tier, delay, pageNavigate }) {
+function ServiceCard({ tier, index, delay, pageNavigate }) {
+  const tierNumber = String(index + 1).padStart(2, '0')
+
   return (
     <ScrollReveal className="services__card-wrap" delay={delay}>
       <article
         className={`services__card${tier.featured ? ' services__card--featured' : ''}${tier.id === 'maintenance' ? ' services__card--maintenance' : ''}`}
       >
+        <span className="services__index" aria-hidden="true">{tierNumber}</span>
         {tier.featured && <span className="services__badge">Most impact</span>}
         {tier.id === 'maintenance' && (
           <span className="services__badge services__badge--addon">Monthly add-on</span>
@@ -67,10 +70,13 @@ function Services() {
 
   return (
     <section id="services" className="services">
+      <div className="services__ambient" aria-hidden="true" />
       <div className="services__inner">
         <ScrollReveal as="header" className="services__header">
-          <p className="services__eyebrow">Services</p>
-          <h2 className="services__title">Choose your starting point</h2>
+          <div className="services__header-copy">
+            <p className="services__eyebrow">Services</p>
+            <h2 className="services__title">Choose your starting point</h2>
+          </div>
           <p className="services__intro">
             Whether you need a solid foundation, a site that stops people in
             their tracks, or ongoing help keeping things current, we have a
@@ -83,6 +89,7 @@ function Services() {
             <ServiceCard
               key={tier.id}
               tier={tier}
+              index={index}
               delay={index * 100}
               pageNavigate={pageNavigate}
             />

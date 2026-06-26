@@ -203,6 +203,8 @@
 }
 
 .navbar__cta {
+  position: relative;
+  overflow: hidden;
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -288,6 +290,12 @@
 .navbar__socials svg path {
   fill: currentColor;
   stroke: none;
+}
+
+.navbar__socials svg path[d^='M22'] {
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 2;
 }
 
 @media (max-width: 900px) {

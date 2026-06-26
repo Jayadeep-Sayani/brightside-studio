@@ -4,6 +4,7 @@ import ScrollReveal from './ScrollReveal'
 const testimonials = [
   {
     id: 'harbor',
+    featured: true,
     quote:
       'I wanted something that felt like walking into our café, not a generic template. This direction nailed the warmth and menu focus I had in mind.',
     context: 'Harbor Café mockup',
@@ -25,6 +26,9 @@ const testimonials = [
 function Testimonials() {
   return (
     <section id="testimonials" className="testimonials" aria-labelledby="testimonials-title">
+      <div className="testimonials__glow" aria-hidden="true" />
+      <div className="testimonials__mesh" aria-hidden="true" />
+
       <div className="testimonials__inner">
         <ScrollReveal as="header" className="testimonials__header">
           <p className="testimonials__eyebrow">Testimonials</p>
@@ -41,23 +45,29 @@ function Testimonials() {
           {testimonials.map((item, index) => (
             <ScrollReveal
               key={item.id}
-              className="testimonials__card-wrap"
+              className={`testimonials__card-wrap${
+                item.featured ? ' testimonials__card-wrap--featured' : ''
+              }`}
               delay={index * 100}
             >
-              <figure className="testimonials__card">
-              <div className="testimonials__stars" aria-hidden="true">
-                <span>★</span>
-                <span>★</span>
-                <span>★</span>
-                <span>★</span>
-                <span>★</span>
-              </div>
-              <blockquote className="testimonials__quote">
-                <p>&ldquo;{item.quote}&rdquo;</p>
-              </blockquote>
-              <figcaption className="testimonials__attribution">
-                <span className="testimonials__context">{item.context}</span>
-              </figcaption>
+              <figure
+                className={`testimonials__card${
+                  item.featured ? ' testimonials__card--featured' : ''
+                }`}
+              >
+                <div className="testimonials__stars" aria-hidden="true">
+                  <span>★</span>
+                  <span>★</span>
+                  <span>★</span>
+                  <span>★</span>
+                  <span>★</span>
+                </div>
+                <blockquote className="testimonials__quote">
+                  <p>&ldquo;{item.quote}&rdquo;</p>
+                </blockquote>
+                <figcaption className="testimonials__attribution">
+                  <span className="testimonials__context">{item.context}</span>
+                </figcaption>
               </figure>
             </ScrollReveal>
           ))}

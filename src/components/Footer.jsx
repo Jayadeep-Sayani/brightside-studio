@@ -2,6 +2,8 @@ import './Footer.css'
 import ScrollReveal from './ScrollReveal'
 import { usePageNavigate } from '../hooks/usePageNavigate'
 import { assetUrl, routeHref } from '../utils/paths'
+import { studioContact } from '../data/studioContact'
+import { EmailIcon, InstagramIcon, PhoneIcon } from './StudioContactIcons'
 
 const LOGO_SRC = assetUrl('/LOGO Image.png')
 
@@ -17,24 +19,6 @@ const legalLinks = [
   { label: 'Privacy Policy', to: '/privacy' },
   { label: 'Terms of Service', to: '/terms' },
 ]
-
-function InstagramIcon() {
-  return (
-    <svg viewBox="0 0 24 24" aria-hidden="true">
-      <rect x="2" y="2" width="20" height="20" rx="5" ry="5" />
-      <circle cx="12" cy="12" r="4" />
-      <circle cx="17.5" cy="6.5" r="1" />
-    </svg>
-  )
-}
-
-function FacebookIcon() {
-  return (
-    <svg viewBox="0 0 24 24" aria-hidden="true">
-      <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z" />
-    </svg>
-  )
-}
 
 function Footer() {
   const year = new Date().getFullYear()
@@ -107,24 +91,30 @@ function Footer() {
               <p className="footer__social-text">
                 Follow along for launches, mockups, and studio updates.
               </p>
-              <div className="footer__socials">
-                <a
-                  href="https://instagram.com"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  aria-label="Instagram"
-                >
-                  <InstagramIcon />
-                </a>
-                <a
-                  href="https://facebook.com"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  aria-label="Facebook"
-                >
-                  <FacebookIcon />
-                </a>
-              </div>
+              <ul className="footer__contact-links">
+                <li>
+                  <a
+                    href={studioContact.instagram}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    <InstagramIcon />
+                    <span>@brightsidestudiovictoria</span>
+                  </a>
+                </li>
+                <li>
+                  <a href={`mailto:${studioContact.email}`}>
+                    <EmailIcon />
+                    <span>{studioContact.email}</span>
+                  </a>
+                </li>
+                <li>
+                  <a href={`tel:${studioContact.phoneTel}`}>
+                    <PhoneIcon />
+                    <span>{studioContact.phoneDisplay}</span>
+                  </a>
+                </li>
+              </ul>
             </div>
           </nav>
         </div>

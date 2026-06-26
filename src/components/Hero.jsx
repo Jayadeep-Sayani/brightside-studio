@@ -133,7 +133,7 @@ function Hero() {
             })}
           </div>
           <p className="hero__mockup-note">
-            Snippets from design mockups I&apos;ve created. Sample work, not sold or
+            Snippets from design mockups we&apos;ve created. Sample work, not sold or
             live client sites. Click any preview to explore a full mockup.
           </p>
         </div>

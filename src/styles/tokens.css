@@ -61,4 +61,9 @@
   /* Motion */
   --transition-fast: 150ms ease;
   --transition-base: 250ms ease;
+  --transition-slow: 450ms ease;
+
+  /* Gradients */
+  --gradient-coastal: linear-gradient(165deg, #fde8d4 0%, #faf6f0 42%, #fafbfc 100%);
+  --gradient-primary: linear-gradient(165deg, var(--color-primary-dark) 0%, var(--color-primary) 55%, #0d4278 100%);
 }
