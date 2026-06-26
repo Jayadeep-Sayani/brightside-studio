@@ -151,6 +151,10 @@ function LumenSalonSite() {
               src={assetUrl('/lumen/hero.jpg')}
               alt=""
               className="lumen-hero__photo"
+              width={2400}
+              height={1602}
+              decoding="async"
+              fetchPriority="high"
             />
           </div>
 
