@@ -1,39 +1,41 @@
 import { PACKAGE_LABELS } from '../data/packages'
 
-export async function submitContactForm(form) {
-  const accessKey = import.meta.env.VITE_WEB3FORMS_ACCESS_KEY
+// FormSubmit delivers to this inbox — no API keys or env vars needed.
+const INBOX_EMAIL = 'jayadeeps1101@gmail.com'
 
-  if (!accessKey) {
-    throw new Error(
-      'Contact form is not configured. Add VITE_WEB3FORMS_ACCESS_KEY to your .env file.',
-    )
+export async function submitContactForm(form, { honey = '' } = {}) {
+  if (honey) {
+    return { success: true }
   }
 
   const packageLabel = PACKAGE_LABELS[form.package] ?? form.package
 
-  const response = await fetch('https://api.web3forms.com/submit', {
+  const response = await fetch(`https://formsubmit.co/ajax/${encodeURIComponent(INBOX_EMAIL)}`, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
       Accept: 'application/json',
     },
     body: JSON.stringify({
-      access_key: accessKey,
-      subject: `New project inquiry from ${form.name}`,
-      from_name: 'Brightside Studio',
       name: form.name,
       email: form.email,
-      replyto: form.email,
       business: form.business || 'Not provided',
       package: packageLabel,
       message: form.message,
-      botcheck: false,
+      _subject: `New project inquiry from ${form.name}`,
+      _template: 'table',
+      _captcha: 'false',
     }),
   })
 
-  const data = await response.json()
+  let data
+  try {
+    data = await response.json()
+  } catch {
+    throw new Error('Unable to send your message right now. Please try again in a moment.')
+  }
 
-  if (!data.success) {
+  if (!response.ok) {
     throw new Error(data.message || 'Unable to send your message right now.')
   }
 

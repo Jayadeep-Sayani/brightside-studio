@@ -40,11 +40,15 @@ function Contact() {
     setError('')
 
     try {
-      await submitContactForm(form)
+      await submitContactForm(form, { honey })
       setSubmitted(true)
       setForm(initialForm)
-    } catch {
-      setError('Something went wrong sending your message. Please try again in a moment.')
+    } catch (err) {
+      setError(
+        err instanceof Error
+          ? err.message
+          : 'Something went wrong sending your message. Please try again in a moment.',
+      )
     } finally {
       setSubmitting(false)
     }
