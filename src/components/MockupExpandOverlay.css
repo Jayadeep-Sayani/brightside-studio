@@ -113,6 +113,17 @@
   }
 }
 
+@media (min-width: 901px) {
+  .mockup-expand__shell {
+    min-height: calc(785px + 3.25rem);
+    height: min(88vh, 56rem);
+  }
+
+  .mockup-expand__frame {
+    min-height: 785px;
+  }
+}
+
 @media (max-width: 640px) {
   .mockup-expand {
     padding: 0.85rem;
