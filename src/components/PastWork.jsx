@@ -30,7 +30,7 @@ function PastWork() {
               <em className="hero-band__accent">local personality</em>
             </h1>
             <p className="hero-band__lead past-work__lead">
-              A selection of design mockups created for cafés, restaurants, and
+              A selection of design mockups I&apos;ve created for cafés, restaurants, and
               neighborhood businesses, each shaped around how the brand feels in
               person.
             </p>
@@ -42,8 +42,8 @@ function PastWork() {
         <div className="past-work__inner">
           <ScrollReveal className="past-work__note-wrap" delay={60}>
             <p className="past-work__note">
-              These are sample mockups from the studio, not live client sites.
-              They show the range of layouts, tones, and industries we design for.
+              These are sample mockups I&apos;ve created, not live client sites.
+              They show the range of layouts, tones, and industries I design for.
             </p>
           </ScrollReveal>
 

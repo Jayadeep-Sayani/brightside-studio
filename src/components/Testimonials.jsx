@@ -5,23 +5,20 @@ const testimonials = [
   {
     id: 'harbor',
     quote:
-      'Our new site finally feels like walking into the café. Customers mention the menu and hours page all the time, and we have seen more weekend reservations since launch.',
-    name: 'Elena Marchetti',
-    role: 'Owner, Harbor Café',
+      'I wanted something that felt like walking into our café, not a generic template. This direction nailed the warmth and menu focus I had in mind.',
+    context: 'Harbor Café mockup',
   },
   {
     id: 'lumen',
     quote:
-      'The booking flow is so smooth that clients actually comment on it. The design captures our salon vibe perfectly without feeling fussy or overdone.',
-    name: 'Priya Nair',
-    role: 'Founder, Lumen Salon',
+      'The booking flow feels effortless, and the design captures our salon vibe without feeling fussy or overdone. Exactly what I pictured.',
+    context: 'Lumen Salon mockup',
   },
   {
     id: 'drift',
     quote:
-      'The animations and photography layout made our restaurant feel high end from the first scroll. We noticed more table inquiries within the first month.',
-    name: 'Marcus Cole',
-    role: 'Partner, Drift Bistro',
+      'The photography layout and motion made the restaurant feel high-end from the first scroll. This is the tone I was hoping to see.',
+    context: 'Drift Bistro mockup',
   },
 ]
 
@@ -32,11 +29,11 @@ function Testimonials() {
         <ScrollReveal as="header" className="testimonials__header">
           <p className="testimonials__eyebrow">Testimonials</p>
           <h2 id="testimonials-title" className="testimonials__title">
-            Loved by local businesses
+            What they asked for
           </h2>
           <p className="testimonials__intro">
-            A few words from owners who wanted a site that felt as welcoming as
-            their storefront.
+            Notes from people who wanted a mockup shaped around their business.
+            These are not live site owners, just the direction they had in mind.
           </p>
         </ScrollReveal>
 
@@ -59,8 +56,7 @@ function Testimonials() {
                 <p>&ldquo;{item.quote}&rdquo;</p>
               </blockquote>
               <figcaption className="testimonials__attribution">
-                <span className="testimonials__name">{item.name}</span>
-                <span className="testimonials__role">{item.role}</span>
+                <span className="testimonials__context">{item.context}</span>
               </figcaption>
               </figure>
             </ScrollReveal>

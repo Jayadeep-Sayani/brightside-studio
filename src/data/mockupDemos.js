@@ -7,6 +7,7 @@ export const mockupDemos = {
     url: 'harborcafe.co',
     variant: 'cafe',
     label: 'Harbor Café',
+    mobilePreview: true,
     Site: HarborCafeSite,
   },
   drift: {
@@ -19,6 +20,7 @@ export const mockupDemos = {
     url: 'lumensalon.com',
     variant: 'salon',
     label: 'Lumen Salon',
+    mobilePreview: true,
     Site: LumenSalonSite,
   },
 }
