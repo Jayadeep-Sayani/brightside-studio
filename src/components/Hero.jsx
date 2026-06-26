@@ -58,7 +58,7 @@ function Hero() {
 
       <div className="hero-band__inner hero__inner">
         <div className="hero__content">
-          <p className="hero-band__eyebrow">Web design for local businesses</p>
+          <p className="hero-band__eyebrow">Victoria, BC · Web design for local businesses</p>
 
           <h1 className="hero__headline">
             Helping your business{' '}
@@ -69,9 +69,9 @@ function Hero() {
           </h1>
 
           <p className="hero__subtext">
-            We craft warm, discoverable websites for cafés, salons, restaurants,
-            and neighborhood shops, so the places people love are easier to find,
-            visit, and share.
+            Based in Victoria, we craft warm, discoverable websites for cafés,
+            salons, restaurants, and neighborhood shops, so the places people love
+            are easier to find, visit, and share.
           </p>
 
           <div className="hero__ctas">
